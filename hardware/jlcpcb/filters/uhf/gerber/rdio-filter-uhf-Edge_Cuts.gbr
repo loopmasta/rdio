@@ -1,0 +1,26 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,10.0.6*%
+%TF.CreationDate,2026-11-06T11:26:51+01:00*%
+%TF.ProjectId,rdio-filter-uhf,7264696f-2d66-4696-9c74-65722d756866,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,Profile,NP*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 10.0.6) date 2026-11-06 11:26:51*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,Profile*%
+%ADD10C,0.100000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+X0Y6200000D02*
+X35000000Y6200000D01*
+X0Y-6200000D02*
+X0Y6200000D01*
+X35000000Y6200000D02*
+X35000000Y-6200000D01*
+X35000000Y-6200000D02*
+X0Y-6200000D01*
+M02*

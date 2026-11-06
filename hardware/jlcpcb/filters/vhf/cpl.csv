@@ -1,0 +1,8 @@
+Designator,Mid X,Mid Y,Layer,Rotation
+C1,8.0000mm,-0.4800mm,Top,270
+C2,15.2000mm,-0.4800mm,Top,270
+C3,22.4000mm,-0.4800mm,Top,270
+C4,29.6000mm,-0.4800mm,Top,270
+L1,11.6000mm,0.0000mm,Top,0
+L2,18.8000mm,0.0000mm,Top,0
+L3,26.0000mm,0.0000mm,Top,0

@@ -1,0 +1,5 @@
+Comment,Designator,Footprint,LCSC Part #
+8.2 pF,"C1,C4",C_0402_1005Metric,
+13 pF,"C2,C3",C_0402_1005Metric,
+22 nH,"L1,L3",L_0402_1005Metric,
+27 nH,L2,L_0402_1005Metric,

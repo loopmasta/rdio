@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/Users/stiwi/Documents/Projects/ESP32/rdio/hardware/rdio.kicad_sch</source>
+    <date>2026-11-06T11:26:30</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>rdio - ESP32 DevKit + DRA818/SA818 radio carrier</title>
+        <company/>
+        <rev>A</rev>
+        <date>2026-11-05</date>
+        <source>rdio.kicad_sch</source>
+        <comment number="1" value="Same pin map as the firmware (GPIO16/17/18/19/25/26/32/34), plus GPIO23 for H/L"/>
+        <comment number="2" value="Audio and power values are first-pass; verify on the bench"/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C15">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7ca25b7a-5fe5-4cbd-a8ef-7f8b3dd4e91c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C16">
+      <value>220nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>38447d7c-503f-4bd6-b0e4-94e89f6eb944</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C18">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>14069934-ef58-4cc0-9258-de1670070029</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C20">
+      <value>47uF</value>
+      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6702ca8a-6fbe-4768-9c44-cc3a0c5ff5c2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C21">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="cap capacitor"/>
+      <property name="ki_fp_filters" value="C_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5c8aed3e-733c-4cc3-9d95-1049d6c93c73</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>CONSMA020.062-G</value>
+      <footprint>rdio:CONSMA020_062_G</footprint>
+      <fields>
+        <field name="Footprint">rdio:CONSMA020_062_G</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Connector" part="Conn_Coaxial" description="coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="BNC SMA SMB SMC LEMO coaxial connector CINCH RCA MCX MMCX U.FL UMRF"/>
+      <property name="ki_fp_filters" value="*BNC* *SMA* *SMB* *SMC* *Cinch* *LEMO* *UMRF* *MCX* *U.FL*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>adf3fb8a-f3f7-4b57-be43-0d8b2c2b4281</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>ESP32 DevKit, row J2</value>
+      <footprint>rdio:PinHoles_1x19_P2.54mm</footprint>
+      <datasheet>https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</datasheet>
+      <fields>
+        <field name="Footprint">rdio:PinHoles_1x19_P2.54mm</field>
+        <field name="Datasheet">https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="rdio" part="DEVKIT_J2" description="ESP32 DevKit 38-pin, left header row J2 (3V3 ... 5V, pin 1 at the antenna end). Only the pins used here are drawn; the footprint has all 19 holes."/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>d7f04364-7c5a-46c9-a53f-b0e95f46b3b1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="19"/>
+            <pin num="14"/>
+            <pin num="7"/>
+            <pin num="5"/>
+            <pin num="9"/>
+            <pin num="10"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J3">
+      <value>ESP32 DevKit, row J3</value>
+      <footprint>rdio:PinHoles_1x19_P2.54mm</footprint>
+      <datasheet>https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</datasheet>
+      <fields>
+        <field name="Footprint">rdio:PinHoles_1x19_P2.54mm</field>
+        <field name="Datasheet">https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="rdio" part="DEVKIT_J3" description="ESP32 DevKit 38-pin, right header row J3 (GND ... CLK). Only the pins used here are drawn; the footprint has all 19 holes."/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2cc9bdfb-0f1c-4185-83f8-3a0979d50a0b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5e371549-1ffe-4fb1-acf2-005daed329c4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R15">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>3a0dbe35-6e40-4e21-a76b-d5242ad47c24</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R16">
+      <value>22k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ac1f5a3b-7f4a-4f84-bb4d-de940ad2555d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R19">
+      <value>220R</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <property name="ki_keywords" value="R res resistor"/>
+      <property name="ki_fp_filters" value="R_*"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b07ebe44-976f-43be-beb8-1890f38d32d8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U6">
+      <value>DRA818V/U or SA818-V/U</value>
+      <footprint>rdio:DRA818_SA818</footprint>
+      <datasheet>https://www.dorji.com/docs/data/DRA818V.pdf</datasheet>
+      <fields>
+        <field name="Footprint">rdio:DRA818_SA818</field>
+        <field name="Datasheet">https://www.dorji.com/docs/data/DRA818V.pdf</field>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="rdio" part="DRA818V" description="Dorji DRA818V/U or NiceRF SA818 VHF/UHF transceiver module, UART, 18 pins"/>
+      <property name="Sheetname" value="rdio"/>
+      <property name="Sheetfile" value="rdio.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c24b9cfe-8ee2-46f4-9423-f67152c480fc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="3"/>
+            <pin num="18"/>
+            <pin num="6"/>
+            <pin num="5"/>
+            <pin num="16"/>
+            <pin num="17"/>
+            <pin num="7"/>
+            <pin num="2"/>
+            <pin num="4"/>
+            <pin num="11"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="12"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector" part="Conn_Coaxial">
+      <description>coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)</description>
+      <footprints>
+        <fp>*BNC*</fp>
+        <fp>*SMA*</fp>
+        <fp>*SMB*</fp>
+        <fp>*SMC*</fp>
+        <fp>*Cinch*</fp>
+        <fp>*LEMO*</fp>
+        <fp>*UMRF*</fp>
+        <fp>*MCX*</fp>
+        <fp>*U.FL*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_Coaxial</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)</field>
+      </fields>
+      <pins>
+        <pin num="1" name="In" type="passive"/>
+        <pin num="2" name="Ext" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Unpolarized capacitor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description">Resistor</field>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="rdio" part="DEVKIT_J2">
+      <description>ESP32 DevKit 38-pin, left header row J2 (3V3 ... 5V, pin 1 at the antenna end). Only the pins used here are drawn; the footprint has all 19 holes.</description>
+      <docs>https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">DEVKIT_J2</field>
+        <field name="Footprint">rdio:PinHoles_1x19_P2.54mm</field>
+        <field name="Datasheet">https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</field>
+        <field name="Description">ESP32 DevKit 38-pin, left header row J2 (3V3 ... 5V, pin 1 at the antenna end). Only the pins used here are drawn; the footprint has all 19 holes.</field>
+      </fields>
+      <pins>
+        <pin num="1" name="3V3" type="power_out"/>
+        <pin num="5" name="IO34/ADC_IN" type="input"/>
+        <pin num="7" name="IO32/SQ" type="bidirectional"/>
+        <pin num="9" name="IO25/TX_AUDIO" type="bidirectional"/>
+        <pin num="10" name="IO26/ADC_BIAS" type="bidirectional"/>
+        <pin num="14" name="GND" type="power_out"/>
+        <pin num="19" name="5V" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="rdio" part="DEVKIT_J3">
+      <description>ESP32 DevKit 38-pin, right header row J3 (GND ... CLK). Only the pins used here are drawn; the footprint has all 19 holes.</description>
+      <docs>https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</docs>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">DEVKIT_J3</field>
+        <field name="Footprint">rdio:PinHoles_1x19_P2.54mm</field>
+        <field name="Datasheet">https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html</field>
+        <field name="Description">ESP32 DevKit 38-pin, right header row J3 (GND ... CLK). Only the pins used here are drawn; the footprint has all 19 holes.</field>
+      </fields>
+      <pins>
+        <pin num="1" name="GND" type="passive"/>
+        <pin num="2" name="IO23/H_L" type="bidirectional"/>
+        <pin num="7" name="GND" type="passive"/>
+        <pin num="8" name="IO19/PD" type="bidirectional"/>
+        <pin num="9" name="IO18/PTT" type="bidirectional"/>
+        <pin num="11" name="IO17/UART_TX" type="bidirectional"/>
+        <pin num="12" name="IO16/UART_RX" type="bidirectional"/>
+      </pins>
+    </libpart>
+    <libpart lib="rdio" part="DRA818V">
+      <description>Dorji DRA818V/U or NiceRF SA818 VHF/UHF transceiver module, UART, 18 pins</description>
+      <docs>https://www.dorji.com/docs/data/DRA818V.pdf</docs>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">DRA818</field>
+        <field name="Footprint"/>
+        <field name="Datasheet">https://www.dorji.com/docs/data/DRA818V.pdf</field>
+        <field name="Description">Dorji DRA818V/U or NiceRF SA818 VHF/UHF transceiver module, UART, 18 pins</field>
+      </fields>
+      <pins>
+        <pin num="1" name="SQ" type="output"/>
+        <pin num="2" name="NC" type="no_connect"/>
+        <pin num="3" name="AF_OUT" type="output"/>
+        <pin num="4" name="NC" type="no_connect"/>
+        <pin num="5" name="PTT" type="input"/>
+        <pin num="6" name="PD" type="input"/>
+        <pin num="7" name="H/L" type="input"/>
+        <pin num="8" name="VBAT" type="power_in"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="GND" type="passive"/>
+        <pin num="11" name="NC" type="no_connect"/>
+        <pin num="12" name="ANT" type="passive"/>
+        <pin num="13" name="NC" type="no_connect"/>
+        <pin num="14" name="NC" type="no_connect"/>
+        <pin num="15" name="NC" type="no_connect"/>
+        <pin num="16" name="RXD" type="input"/>
+        <pin num="17" name="TXD" type="output"/>
+        <pin num="18" name="MIC_IN" type="input"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector">
+      <uri>${KICAD10_SYMBOL_DIR}/Connector.kicad_sym</uri>
+    </library>
+    <library logical="Device">
+      <uri>${KICAD10_SYMBOL_DIR}/Device.kicad_sym</uri>
+    </library>
+    <library logical="rdio">
+      <uri>${KIPRJMOD}/rdio.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="+3V3" class="Default">
+      <node ref="J2" pin="1" pinfunction="3V3_1" pintype="power_out"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+    </net>
+    <net code="2" name="+5V" class="Default">
+      <node ref="C20" pin="1" pintype="passive"/>
+      <node ref="C21" pin="1" pintype="passive"/>
+      <node ref="J2" pin="19" pinfunction="5V_19" pintype="power_out"/>
+      <node ref="U6" pin="8" pinfunction="VBAT_8" pintype="power_in"/>
+    </net>
+    <net code="3" name="/ADC_BIAS" class="Default">
+      <node ref="J2" pin="10" pinfunction="IO26/ADC_BIAS_10" pintype="bidirectional"/>
+      <node ref="R15" pin="1" pintype="passive"/>
+    </net>
+    <net code="4" name="/ADC_IN" class="Default">
+      <node ref="C15" pin="2" pintype="passive"/>
+      <node ref="J2" pin="5" pinfunction="IO34/ADC_IN_5" pintype="input"/>
+      <node ref="R15" pin="2" pintype="passive"/>
+    </net>
+    <net code="5" name="/AF_OUT" class="Default">
+      <node ref="C15" pin="1" pintype="passive"/>
+      <node ref="U6" pin="3" pinfunction="AF_OUT_3" pintype="output"/>
+    </net>
+    <net code="6" name="/DRA_RXD" class="Default">
+      <node ref="J3" pin="11" pinfunction="IO17/UART_TX_11" pintype="bidirectional"/>
+      <node ref="U6" pin="16" pinfunction="RXD_16" pintype="input"/>
+    </net>
+    <net code="7" name="/DRA_TXD" class="Default">
+      <node ref="J3" pin="12" pinfunction="IO16/UART_RX_12" pintype="bidirectional"/>
+      <node ref="U6" pin="17" pinfunction="TXD_17" pintype="output"/>
+    </net>
+    <net code="8" name="/HL" class="Default">
+      <node ref="J3" pin="2" pinfunction="IO23/H_L_2" pintype="bidirectional"/>
+      <node ref="U6" pin="7" pinfunction="H/L_7" pintype="input"/>
+    </net>
+    <net code="9" name="/MIC_IN" class="Default">
+      <node ref="C18" pin="2" pintype="passive"/>
+      <node ref="U6" pin="18" pinfunction="MIC_IN_18" pintype="input"/>
+    </net>
+    <net code="10" name="/PD" class="Default">
+      <node ref="J3" pin="8" pinfunction="IO19/PD_8" pintype="bidirectional"/>
+      <node ref="U6" pin="6" pinfunction="PD_6" pintype="input"/>
+    </net>
+    <net code="11" name="/PTT" class="Default">
+      <node ref="J3" pin="9" pinfunction="IO18/PTT_9" pintype="bidirectional"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="U6" pin="5" pinfunction="PTT_5" pintype="input"/>
+    </net>
+    <net code="12" name="/SQ" class="Default">
+      <node ref="J2" pin="7" pinfunction="IO32/SQ_7" pintype="bidirectional"/>
+      <node ref="U6" pin="1" pinfunction="SQ_1" pintype="output"/>
+    </net>
+    <net code="13" name="/TX_AUDIO" class="Default">
+      <node ref="J2" pin="9" pinfunction="IO25/TX_AUDIO_9" pintype="bidirectional"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+    </net>
+    <net code="14" name="GND" class="Default">
+      <node ref="C16" pin="2" pintype="passive"/>
+      <node ref="C20" pin="2" pintype="passive"/>
+      <node ref="C21" pin="2" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="Ext_2" pintype="passive"/>
+      <node ref="J2" pin="14" pinfunction="GND_14" pintype="power_out"/>
+      <node ref="J3" pin="1" pinfunction="GND_1" pintype="passive"/>
+      <node ref="J3" pin="7" pinfunction="GND_7" pintype="passive"/>
+      <node ref="R19" pin="2" pintype="passive"/>
+      <node ref="U6" pin="10" pinfunction="GND_10" pintype="passive"/>
+      <node ref="U6" pin="9" pinfunction="GND_9" pintype="power_in"/>
+    </net>
+    <net code="15" name="Net-(C16-Pad1)" class="Default">
+      <node ref="C16" pin="1" pintype="passive"/>
+      <node ref="C18" pin="1" pintype="passive"/>
+      <node ref="R16" pin="2" pintype="passive"/>
+      <node ref="R19" pin="1" pintype="passive"/>
+    </net>
+    <net code="16" name="Net-(J1-In)" class="Default">
+      <node ref="J1" pin="1" pinfunction="In_1" pintype="passive"/>
+      <node ref="U6" pin="12" pinfunction="ANT_12" pintype="passive"/>
+    </net>
+    <net code="17" name="unconnected-(U6-NC-Pad2)" class="Default">
+      <node ref="U6" pin="2" pinfunction="NC_2" pintype="no_connect"/>
+    </net>
+    <net code="18" name="unconnected-(U6-NC-Pad4)" class="Default">
+      <node ref="U6" pin="4" pinfunction="NC_4" pintype="no_connect"/>
+    </net>
+    <net code="19" name="unconnected-(U6-NC-Pad11)" class="Default">
+      <node ref="U6" pin="11" pinfunction="NC_11" pintype="no_connect"/>
+    </net>
+    <net code="20" name="unconnected-(U6-NC-Pad13)" class="Default">
+      <node ref="U6" pin="13" pinfunction="NC_13" pintype="no_connect"/>
+    </net>
+    <net code="21" name="unconnected-(U6-NC-Pad14)" class="Default">
+      <node ref="U6" pin="14" pinfunction="NC_14" pintype="no_connect"/>
+    </net>
+    <net code="22" name="unconnected-(U6-NC-Pad15)" class="Default">
+      <node ref="U6" pin="15" pinfunction="NC_15" pintype="no_connect"/>
+    </net>
+  </nets>
+</export>

@@ -1,0 +1,10 @@
+Designator,Mid X,Mid Y,Layer,Rotation
+C15,-5.5000mm,-5.5000mm,Bottom,0
+C16,-2.5000mm,4.5000mm,Bottom,270
+C18,3.5000mm,6.5000mm,Bottom,0
+C20,-21.0000mm,1.6000mm,Bottom,0
+C21,-16.1000mm,3.0000mm,Bottom,0
+R12,-11.5000mm,-6.0000mm,Bottom,0
+R15,-9.5000mm,-3.8000mm,Bottom,0
+R16,-3.5000mm,1.0000mm,Bottom,0
+R19,0.5000mm,4.5000mm,Bottom,270
