@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rdio privacy policy</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f2f2f7; --card: #ffffff; --text: #1c1c1e; --muted: #6c6c70; --accent: #b8730a; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #000000; --card: #1c1c1e; --text: #f2f2f7; --muted: #98989d; --accent: #e0952b; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px 56px; background: var(--bg); color: var(--text); font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 8px 0 4px; }
+  h2 { font-size: 19px; margin: 30px 0 8px; }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border-radius: 14px; padding: 4px 20px 16px; margin: 16px 0; }
+  .summary { background: var(--card); border-left: 4px solid var(--accent); border-radius: 14px; padding: 14px 20px; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-bottom: 1px solid rgba(128,128,128,.25); }
+  th { color: var(--muted); font-weight: 600; }
+  a { color: var(--accent); }
+  li { margin: 4px 0; }
+</style>
+</head>
+<body>
+<main>
+  <h1>rdio privacy policy</h1>
+  <p class="muted">For the rdio app for iPhone, the rdio radio firmware and this web site. Last updated: 7 November 2026.</p>
+
+  <div class="summary">
+    <strong>In short:</strong> rdio has no accounts, no analytics, no advertising and no tracking, and it sends nothing to the developer or to any server of ours.
+    The app only talks to your own radio on your own network. The one thing that can leave your control is your position and call sign when you
+    switch on the APRS beacon: that is broadcast over amateur radio, which is public by nature.
+  </div>
+
+  <h2>Who is responsible</h2>
+  <p>Stefan Beck, the developer of rdio. Questions: <a href="https://github.com/loopmasta/rdio/issues">github.com/loopmasta/rdio/issues</a>.</p>
+
+  <h2>What the app does with your data</h2>
+  <table>
+    <tr><th>Data</th><th>What for</th><th>Where it goes</th></tr>
+    <tr>
+      <td><strong>Microphone</strong></td>
+      <td>Your voice is picked up only while you hold the push-to-talk button, so it can be transmitted by the radio.</td>
+      <td>Over the local Wi-Fi network to your radio, which transmits it by radio. It is not recorded or stored by the app.</td>
+    </tr>
+    <tr>
+      <td><strong>Location</strong> (only while the app is in use, approximate, about 100 m)</td>
+      <td>To show the distance to the stations you receive, and, only if you switch it on, to send your position in the APRS beacon.</td>
+      <td>On the phone for the distances (not stored). In the beacon it is put into a radio packet that your radio broadcasts. Anyone with a receiver can read it, and APRS gateways may publish it on the internet (for example on aprs.fi).</td>
+    </tr>
+    <tr>
+      <td><strong>Call sign and beacon comment</strong></td>
+      <td>You type them in Settings. They are part of the packets you send (beacon and messages).</td>
+      <td>Stored on the phone. When you transmit, they are broadcast over radio like the position.</td>
+    </tr>
+    <tr>
+      <td><strong>Channels and settings</strong> (frequencies, squelch, band, microphone level, beacon settings)</td>
+      <td>So the app is set up the way you left it.</td>
+      <td>Stored on the phone only.</td>
+    </tr>
+    <tr>
+      <td><strong>Radio password</strong></td>
+      <td>To log in to your radio. It is the radio's Wi-Fi password.</td>
+      <td>Stored in the iPhone Keychain. It is never sent in the clear: the app answers a challenge from the radio with a hash.</td>
+    </tr>
+    <tr>
+      <td><strong>Received radio traffic</strong> (APRS packets and messages you hear)</td>
+      <td>To show the APRS chat.</td>
+      <td>Kept in memory while the app runs and not saved. Tapping a call sign or a position opens QRZ.com or Apple Maps, which then see what you tapped, under their own policies.</td>
+    </tr>
+  </table>
+
+  <h2>Network</h2>
+  <ul>
+    <li>The app connects only to your radio on the local network (its own Wi-Fi, or a Wi-Fi network you chose). It looks for radios on that network with Bonjour, which is why iOS asks for local network access. It uses no cellular data for this.</li>
+    <li>The app has no third-party libraries, no analytics and no advertising, and it does not create an account.</li>
+  </ul>
+
+  <h2>Transmitting</h2>
+  <p>Using the radio to transmit needs an amateur radio licence and must follow the rules that apply to you. Everything you transmit, including your call sign and position, can be received by others. Please switch the position beacon on only if you want that.</p>
+
+  <h2>The radio firmware</h2>
+  <p>The firmware stays on your radio. It stores the Wi-Fi settings and the radio settings in the radio's own memory and sends nothing to the internet. The radio accepts connections only from clients that know its password.</p>
+
+  <h2>This web site</h2>
+  <p>This site, including the firmware installer, is hosted by GitHub Pages. The installer runs entirely in your browser and talks to the board you connect over USB. We collect nothing and use no cookies or analytics. GitHub, as the host, may log visits as described in <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.</p>
+
+  <h2>Your rights and deletion</h2>
+  <p>We hold no data about you, so there is nothing to request from us. To remove what is on your phone, delete the app: this removes the settings, the channel list and the saved radio password. You can switch off the position beacon and the location permission at any time in the app and in iOS Settings.</p>
+
+  <h2>Children</h2>
+  <p>The app is not directed at children and collects no personal data from anyone.</p>
+
+  <h2>Changes</h2>
+  <p>If this policy changes, the new version is published here with a new date.</p>
+
+  <p class="muted">Project: <a href="https://github.com/loopmasta/rdio">github.com/loopmasta/rdio</a></p>
+</main>
+</body>
+</html>
