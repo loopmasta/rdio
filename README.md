@@ -106,6 +106,8 @@ Gerber, drill, bill of materials and placement files for JLCPCB are in [hardware
 
 Transmitting needs an amateur radio licence and must follow the rules that apply to you. The app limits the transmit frequency to the selected band, but you are responsible for staying within your licence and the local regulations.
 
+**Privacy:** the app has no accounts, analytics or tracking. See the [privacy policy](https://loopmasta.github.io/rdio/privacy/).
+
 ## Repository contents
 
 This repository lets a small group of testers order the hardware, build it, flash the firmware and install the app, with no software knowledge or development tools. It holds the hardware design (`hardware/`), the screenshots (`docs/`) and this description.
