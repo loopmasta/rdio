@@ -19,7 +19,7 @@ A VHF/UHF radio you control from your iPhone. An ESP32 drives a DRA818 / SA818 t
 
 ## How it works
 
-- The ESP32 opens its own Wi-Fi network (or joins one you configure). The phone connects to it and talks to the radio over a WebSocket.
+- The ESP32 opens its own Wi-Fi network (or joins one you configure). The phone connects to it and talks to the radio over a WebSocket. Radios on a shared network are found automatically (Bonjour), so one app can control several of them.
 - Receive audio goes from the radio to the phone as 16 kHz mono PCM. Transmit audio goes the other way while you hold the push-to-talk button.
 - The module is tuned, squelched and keyed by the ESP32 through its UART, PTT and power-down lines.
 - Bluetooth is not used.
@@ -29,16 +29,17 @@ A VHF/UHF radio you control from your iPhone. An ESP32 drives a DRA818 / SA818 t
 - **Receive and transmit** in the selected band (VHF 134–174 MHz or UHF 400–480 MHz).
 - **Channel list** with simplex and duplex (repeater) entries, shift direction and offset, CTCSS transmit and receive tones, and a 1750 Hz tone burst. Reorder by dragging, swipe to edit or delete.
 - **APRS** on 1200 baud AFSK: the app decodes received packets (positions, Mic-E, messages, status) on APRS channels, shows them as a chat with distance and a link to Maps, links call signs to QRZ.com. You can also send: type a message in the chat to a call sign or to CQ. Messages to a station are repeated until it acknowledges them, the app acknowledges messages addressed to you, and everything is sent only while the channel is clear. A periodic position beacon is available too.
-- **Phone microphone chain** with high-pass filter and compressor, soft limiter on the radio side.
+- **Several radios:** each radio announces itself on the network as a Bonjour service (`_rdio._tcp`, with its name, module type and firmware version). The app lists the radios it finds in Settings → Radio and switches between them with one tap. Give every radio its own name (Settings → Radio Name), because the name is also its Wi-Fi and host name.
+- **Phone microphone chain** with a compressor and a mic level setting, soft limiter on the radio side.
 - **Native iOS design**: system controls, Light and Dark Mode, Dynamic Type, VoiceOver, haptics, no navigation bar.
 - **Transmit safety**: the app only transmits inside the selected band, and the firmware releases the push-to-talk line when the connection drops, when no audio arrives, and after 120 seconds. Only one client can transmit.
 - Firmware updates over Wi-Fi.
 
 ## Status
 
-Working on a real radio: receive, transmit, channel handling, tones, tone burst, APRS decoding.
+Working on a real radio: receive, transmit, channel handling, tones, tone burst, APRS decoding, and the APRS position beacon (tested over the air).
 
-Not done yet: a scan function, a TX power switch (the carrier board wires the module's high/low power pin, but the firmware does not use it yet), and an over-the-air test of the APRS beacon.
+Not done yet: a scan function and a TX power switch (the carrier board wires the module's high/low power pin, but the firmware does not use it yet).
 
 The carrier board and the harmonic filters below are **designed but not built or measured yet**. The filters are simulated only; check them with a NanoVNA before relying on them.
 
