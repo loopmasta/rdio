@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rdio firmware installer</title>
+<style>
+  :root { color-scheme: light dark; --bg: #f2f2f7; --card: #ffffff; --text: #1c1c1e; --muted: #6c6c70; --accent: #b8730a; --line: #d1d1d6; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #000000; --card: #1c1c1e; --text: #f2f2f7; --muted: #98989d; --accent: #e0952b; --line: #38383a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 16px 48px; background: var(--bg); color: var(--text); font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 28px; margin: 8px 0 4px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { color: var(--text); }
+  .muted { color: var(--muted); }
+  .card { background: var(--card); border-radius: 14px; padding: 20px; margin: 16px 0; }
+  .install { text-align: center; }
+  button.primary { background: var(--accent); color: #fff; border: 0; border-radius: 12px; padding: 14px 28px; font-size: 17px; font-weight: 600; cursor: pointer; }
+  button.primary:hover { filter: brightness(1.08); }
+  .notice { color: var(--muted); }
+  .warn { border-left: 4px solid var(--accent); padding-left: 12px; }
+  code { background: var(--bg); border-radius: 6px; padding: 1px 6px; font-size: 14px; }
+  ol { padding-left: 22px; } li { margin: 6px 0; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>rdio firmware installer</h1>
+  <p class="muted">Installs the firmware on the ESP32 of your rdio radio from this page, over USB. Firmware version <strong id="version">…</strong>.</p>
+
+  <div class="card install">
+    <esp-web-install-button manifest="manifest.json">
+      <button slot="activate" class="primary">Install firmware</button>
+      <span slot="unsupported" class="notice">This browser cannot flash over USB. Open this page in Chrome or Edge on a computer (not on a phone or tablet, and not in Safari or Firefox).</span>
+      <span slot="not-allowed" class="notice">Flashing needs a secure page (https). Open this page from its GitHub Pages address.</span>
+    </esp-web-install-button>
+    <noscript><p class="notice">JavaScript is needed for the installer.</p></noscript>
+  </div>
+
+  <h2>How to install</h2>
+  <ol>
+    <li>Connect the ESP32 to your computer with a USB cable that carries data (some cables only charge).</li>
+    <li>Press <strong>Install firmware</strong> and choose the serial port of the board (it is often called “CP2102”, “USB Serial” or “cu.usbserial”).</li>
+    <li>Leave <strong>Erase device</strong> unticked to keep the radio's saved settings (Wi-Fi password, channel, tuning). Tick it for a clean start.</li>
+    <li>Wait until the installer says it is done (about a minute). The radio restarts by itself.</li>
+  </ol>
+
+  <h2>After the first install</h2>
+  <ul>
+    <li>The radio opens its own Wi-Fi network named <code>rdio</code> with the password <code>12345678</code>. Join it on your phone and open the rdio app. Change the password in the app's Settings.</li>
+    <li>Later updates can also go over Wi-Fi (command line, <code>pio run -e ota -t upload</code>). This page works for any update as long as the board is plugged in.</li>
+  </ul>
+
+  <div class="card warn">
+    <strong>Good to know</strong>
+    <ul>
+      <li>Do not unplug the board while it is flashing. If it fails, press the button again; a failed flash can be repeated safely.</li>
+      <li>On Windows the board may need the <a href="https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers">CP210x driver</a> (some boards use a CH340 chip instead). If no port shows up, install the driver and reconnect the board.</li>
+      <li>If the installer cannot connect, hold the <strong>BOOT</strong> button on the board while it connects.</li>
+      <li>Transmitting needs an amateur radio licence and must follow the rules that apply to you.</li>
+    </ul>
+  </div>
+
+  <p class="muted">Project: <a href="https://github.com/loopmasta/rdio">github.com/loopmasta/rdio</a>. Flashing uses the browser's Web Serial API with <a href="vendor/esp-web-tools/README.md">ESP Web Tools</a> (Apache-2.0), served from this site.</p>
+</main>
+<script type="module" src="vendor/esp-web-tools/install-button.js"></script>
+<script>
+  fetch("manifest.json").then(r => r.json()).then(m => { document.getElementById("version").textContent = m.version; }).catch(() => {});
+</script>
+</body>
+</html>

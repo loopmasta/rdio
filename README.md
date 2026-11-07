@@ -113,6 +113,6 @@ This repository lets a small group of testers order the hardware, build it, flas
 The software is not included and does not need to be built:
 
 - **iOS app:** coming soon to the App Store.
-- **Firmware:** installed from your browser with a web flasher. Connect the ESP32 over USB, open the flasher page and press install.
+- **Firmware:** installed from your browser with the [web flasher](https://loopmasta.github.io/rdio/flash/). Connect the ESP32 over USB, open the page in Chrome or Edge on a computer and press install. It needs a USB cable that carries data, and it works for the first install and for every update.
 
-Both will be linked here once they are available. The software might become open source at some point.
+The app will be linked here once it is available. The software might become open source at some point.
