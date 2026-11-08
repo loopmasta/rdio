@@ -4,16 +4,18 @@ A VHF/UHF radio you control from your iPhone. An ESP32 drives a DRA818 / SA818 t
 
 <table>
   <tr>
-    <td align="center"><img src="docs/rdio-iphone.png" width="200" alt="Main screen: frequency, signal and audio meters, channel list"></td>
-    <td align="center"><img src="docs/rdio-iphone-editor.png" width="200" alt="Channel editor: frequency, simplex or duplex, tones, tone burst"></td>
-    <td align="center"><img src="docs/rdio-iphone-settings.png" width="200" alt="Settings sheet: APRS beacon and radio"></td>
-    <td align="center"><img src="docs/rdio-iphone-aprs.png" width="200" alt="APRS chat with heard stations"></td>
+    <td align="center"><img src="docs/1-main.png" width="150" alt="Main screen: frequency, signal and audio meters, channel list"></td>
+    <td align="center"><img src="docs/2-transmit.png" width="150" alt="Transmitting: push-to-talk"></td>
+    <td align="center"><img src="docs/3-aprs.png" width="150" alt="APRS chat with heard stations"></td>
+    <td align="center"><img src="docs/4-editor.png" width="150" alt="Channel editor: frequency, simplex or duplex, tones, tone burst"></td>
+    <td align="center"><img src="docs/5-settings.png" width="150" alt="Settings sheet: APRS beacon and radio"></td>
   </tr>
   <tr>
     <td align="center">Main screen</td>
+    <td align="center">Transmit</td>
+    <td align="center">APRS chat</td>
     <td align="center">Channel editor</td>
     <td align="center">Settings</td>
-    <td align="center">APRS chat</td>
   </tr>
 </table>
 
