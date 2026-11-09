@@ -1,6 +1,8 @@
 # rdio
 
-A VHF/UHF radio you control from your iPhone. An ESP32 drives a DRA818 / SA818 transceiver module and streams the audio over Wi-Fi to a native iOS app: listen, push-to-talk, keep a list of channels and repeaters, and read APRS packets in a chat view.
+**rdio** turns your iPhone into a VHF/UHF radio. It connects to one or more ESP32-powered devices equipped with radio modules over Wi-Fi. Listen to transmissions, talk with push-to-talk, save your favourite channels and repeaters, and exchange APRS messages in a familiar chat-style interface.
+
+**[Get the app on the App Store](https://apps.apple.com/de/app/rdio/id6831735571?l=en-GB)**
 
 <table>
   <tr>
@@ -116,7 +118,5 @@ This repository lets a small group of testers order the hardware, build it, flas
 
 The software is not included and does not need to be built:
 
-- **iOS app:** coming soon to the App Store.
+- **iOS app:** [download rdio from the App Store](https://apps.apple.com/de/app/rdio/id6831735571?l=en-GB).
 - **Firmware:** installed from your browser with the [web flasher](https://loopmasta.github.io/rdio/flash/). Connect the ESP32 over USB, open the page in Chrome or Edge on a computer and press install.
-
-The app will be linked here once it is available. The software might become open source at some point.
