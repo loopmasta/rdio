@@ -37,15 +37,16 @@
 - **Phone microphone chain** with a compressor and a mic level setting, soft limiter on the radio side.
 - **Native iOS design**: system controls, Light and Dark Mode, Dynamic Type, VoiceOver, haptics, no navigation bar.
 - **Transmit safety**: the app only transmits inside the selected band, and the firmware releases the push-to-talk line when the connection drops, when no audio arrives, and after 120 seconds. Only one client can transmit.
+- **Transmit power:** high (1 W) or low (0.5 W) with a switch in Settings → Radio. The radio remembers the choice; low power draws about half as much from the battery while transmitting.
 - Firmware updates over Wi-Fi.
 
 ## Status
 
 Working on a real radio: receive, transmit, channel handling, tones, tone burst, APRS decoding, and the APRS position beacon (tested over the air).
 
-Not done yet: a scan function and a TX power switch (the carrier board wires the module's high/low power pin, but the firmware does not use it yet).
+Not done yet: a scan function in the app.
 
-The carrier board and the harmonic filters below are **designed but not built or measured yet**. The filters are simulated only; check them with a NanoVNA before relying on them.
+The carrier board is built and works: receive, transmit, the transmit audio level and the power switch were tested on the air. The harmonic filters below are **designed but not built or measured yet**. They are simulated only; check them with a NanoVNA before relying on them.
 
 ## Hardware
 
@@ -74,11 +75,11 @@ A 57.3 × 25.4 mm two-layer board for an ESP32 38-pin DevKit (NodeMCU-32S style)
 | Squelch in | GPIO32 |
 | RX audio in (ADC) | GPIO34, biased to 1.75 V by GPIO26 |
 | TX audio out | GPIO25 |
-| High / low power | GPIO23 (floating = 1 W, low = 0.5 W; not used by the firmware yet) |
+| High / low power | GPIO23 (the firmware pulls it low for 0.5 W and leaves it floating for 1 W; it never drives it high) |
 
 - The module's supply pin is fed straight from the DevKit's 5 V pin, with a 47 µF and a 100 nF capacitor next to the module. The module's datasheet allows 3.3 to 4.5 V, so check the voltage on your DevKit's 5 V pin (many boards drop it through a diode from USB) before the first power-up.
 - Pin numbers, the module name and the antenna end are printed on the top silkscreen inside the module outline, to help with placing it.
-- Test status: the module's footprint and the DevKit's pin spacing were checked against real parts; the audio values are first-pass.
+- Test status: built and working. The module's footprint and the DevKit's pin spacing were checked against real parts. The transmit network (22 k in series, 220 Ω and 220 nF to ground) divides the signal by about 100 and rolls it off from a few hundred hertz, so the firmware compensates with a higher transmit gain and a first-order treble boost (`firmware/idf/main/board.h`); the level and the frequency response were checked through a second radio.
 
 ### Harmonic filters (2 m and 70 cm)
 
