@@ -101,17 +101,18 @@ def dra818v_symbol():
 			(name {q(name)} (effects (font (size 1.27 1.27))))
 			(number {q(num)} (effects (font (size 1.27 1.27)))))'''
     pins = [
-        pin("output", -12.7, 12.7, 0, "SQ", "1"), pin("output", -12.7, 10.16, 0, "AF_OUT", "3"),
-        pin("input", -12.7, 7.62, 0, "MIC_IN", "18"), pin("input", -12.7, -2.54, 0, "PD", "6"),
-        pin("input", -12.7, -5.08, 0, "PTT", "5"), pin("input", -12.7, -7.62, 0, "RXD", "16"),
-        pin("output", -12.7, -10.16, 0, "TXD", "17"), pin("input", -12.7, -12.7, 0, "H/L", "7"),
+        pin("input", -12.7, 20.32, 0, "PTT", "5"), pin("input", -12.7, 17.78, 0, "PD", "6"),
+        pin("input", -12.7, 15.24, 0, "RXD", "16"), pin("output", -12.7, 12.7, 0, "TXD", "17"),
+        pin("input", -12.7, 10.16, 0, "H/L", "7"),
+        pin("output", -12.7, 0, 0, "SQ", "1"), pin("output", -12.7, -5.08, 0, "AF_OUT", "3"),
+        pin("input", -12.7, -22.86, 0, "MIC_IN", "18"),
         pin("passive", 12.7, 0, 180, "ANT", "12"),
-        pin("power_in", 0, 20.32, 270, "VBAT", "8"),
-        pin("power_in", 0, -20.32, 90, "GND", "9"), pin("passive", 0, -20.32, 90, "GND", "10"),
+        pin("power_in", 0, 25.4, 270, "VBAT", "8"),
+        pin("power_in", 0, -33.02, 90, "GND", "9"), pin("passive", 0, -33.02, 90, "GND", "10"),
     ]
     for i, n in enumerate(["2", "4", "11", "13", "14", "15"]):
         x = [-7.62, -5.08, -2.54, 2.54, 5.08, 7.62][i]
-        pins.append(pin("no_connect", x, -20.32, 90, "NC", n))
+        pins.append(pin("no_connect", x, -33.02, 90, "NC", n))
     props = "".join(f'''
 		(property {q(k)} {q(v)} (at 0 0 0) (effects (font (size 1.27 1.27)){' (hide yes)' if h else ''}))'''
                     for k, v, h in [("Reference", "U", False), ("Value", "DRA818", False),
@@ -121,7 +122,7 @@ def dra818v_symbol():
     txt = f'''(symbol "DRA818V"
 		(exclude_from_sim no) (in_bom yes) (on_board yes){props}
 		(symbol "DRA818V_0_1"
-			(rectangle (start -10.16 17.78) (end 10.16 -17.78)
+			(rectangle (start -10.16 22.86) (end 10.16 -30.48)
 				(stroke (width 0.254) (type default)) (fill (type background))))
 		(symbol "DRA818V_1_1"
 			{chr(10).join(pins)}
@@ -152,15 +153,15 @@ def devkit_symbol(name, right, left, top_mm, bottom_mm, desc):
 
 def j2_symbol():
     return devkit_symbol("DEVKIT_J2",
-        right=[("IO32/SQ", 7, "bidirectional", 5.08), ("IO34/ADC_IN", 5, "input", 2.54),
-               ("IO25/TX_AUDIO", 9, "bidirectional", 0), ("IO26/ADC_BIAS", 10, "bidirectional", -2.54)],
-        left=[("3V3", 1, "power_out", 5.08), ("5V", 19, "power_out", 2.54), ("GND", 14, "power_out", 0)],
-        top_mm=7.62, bottom_mm=-5.08,
+        right=[("IO32/SQ", 7, "bidirectional", 7.62), ("IO34/ADC_IN", 5, "input", 2.54),
+               ("IO26/ADC_BIAS", 10, "bidirectional", -5.08), ("IO25/TX_AUDIO", 9, "bidirectional", -15.24)],
+        left=[("3V3", 1, "power_out", 7.62), ("5V", 19, "power_out", 5.08), ("GND", 14, "power_out", 0)],
+        top_mm=10.16, bottom_mm=-17.78,
         desc="ESP32 DevKit 38-pin, left header row J2 (3V3 ... 5V, pin 1 at the antenna end). Only the pins used here are drawn; the footprint has all 19 holes.")
 
 def j3_symbol():
     return devkit_symbol("DEVKIT_J3",
-        right=[("IO19/PD", 8, "bidirectional", 5.08), ("IO18/PTT", 9, "bidirectional", 2.54),
+        right=[("IO18/PTT", 9, "bidirectional", 5.08), ("IO19/PD", 8, "bidirectional", 2.54),
                ("IO17/UART_TX", 11, "bidirectional", 0), ("IO16/UART_RX", 12, "bidirectional", -2.54),
                ("IO23/H_L", 2, "bidirectional", -5.08)],
         left=[("GND", 1, "passive", 2.54), ("GND", 7, "passive", 0)],
@@ -546,58 +547,63 @@ def p33(pt): S.pwr("+3V3", pt)
 def p5(pt): S.pwr("+5V", pt)
 
 # ============================================================ 1. dev board ====
+# Signals run left to right: DevKit (frame 1) -> wires -> radio (frame 2). Every point-to-point link is a wire; the
+# net labels only name the nets (they are the names used on the PCB).
 S.ox, S.oy = 12, 12
 S.frame(0, 0, 48, 70, "1  ESP32 DevKit")
-S.place("rdio:DEVKIT_J2", "J2", "ESP32 DevKit, row J2", (30, 24), fp="rdio:PinHoles_1x19_P2.54mm", ref_at=S.tp(22, 11), val_at=S.tp(22, 13.5))
-S.place("rdio:DEVKIT_J3", "J3", "ESP32 DevKit, row J3", (30, 36), fp="rdio:PinHoles_1x19_P2.54mm", ref_at=S.tp(22, 43), val_at=S.tp(22, 45.5))
+S.place("rdio:DEVKIT_J3", "J3", "ESP32 DevKit, row J3", (30, 22), fp="rdio:PinHoles_1x19_P2.54mm", ref_at=S.tp(22, 10.5), val_at=S.tp(22, 13))
+S.place("rdio:DEVKIT_J2", "J2", "ESP32 DevKit, row J2", (30, 40), fp="rdio:PinHoles_1x19_P2.54mm", ref_at=S.tp(22, 55), val_at=S.tp(22, 57.5))
 v3 = S.P("J2", "1"); v5 = S.P("J2", "19"); g2 = S.P("J2", "14")
-W(v3, (v3[0] - 6, v3[1]), (v3[0] - 6, v3[1] - 4)); p33((v3[0] - 6, v3[1] - 4))
-W(v5, (v5[0] - 10, v5[1]), (v5[0] - 10, v5[1] - 4)); p5((v5[0] - 10, v5[1] - 4))
-W(g2, (g2[0] - 6, g2[1]), (g2[0] - 6, g2[1] + 4)); gnd((g2[0] - 6, g2[1] + 4))
+W(v3, (v3[0] - 8, v3[1]), (v3[0] - 8, v3[1] - 4)); p33((v3[0] - 8, v3[1] - 4))
+W(v5, (v5[0] - 12, v5[1]), (v5[0] - 12, v5[1] - 4)); p5((v5[0] - 12, v5[1] - 4))
+W(g2, (g2[0] - 4, g2[1]), (g2[0] - 4, g2[1] + 4)); gnd((g2[0] - 4, g2[1] + 4))
 ga, gb = S.P("J3", "1"), S.P("J3", "7")
 W(ga, (ga[0] - 4, ga[1]), (ga[0] - 4, gb[1] + 4)); W(gb, (gb[0] - 4, gb[1])); gnd((ga[0] - 4, gb[1] + 4))
-S.text("Its own pins are soldered into\nthe carrier (no sockets), about\n3 mm gap. NodeMCU-32S / DevKitC V4\norder, rows 22.86 mm apart:\nJ2 = left row (3V3 ... 5V)\nJ3 = right row (GND ... CLK)", (2, 50), 1.27)
+S.text("Its own pins are soldered into\nthe carrier (no sockets), about\n3 mm gap. NodeMCU-32S / DevKitC V4\norder, rows 22.86 mm apart:\nJ2 = left row (3V3 ... 5V)\nJ3 = right row (GND ... CLK)", (2, 60), 1.27)
 
 # ================================================ 2. radio, bus, antenna, audio ====
 S.frame(52, 0, 140, 100, "2  Radio module: DRA818V/U or SA818-V/U")
-S.place("rdio:DRA818V", "U6", "DRA818V/U or SA818-V/U", (106, 30), fp="rdio:DRA818_SA818", ref_at=S.tp(110, 11), val_at=S.tp(110, 13.5))
+S.place("rdio:DRA818V", "U6", "DRA818V/U or SA818-V/U", (106, 34), fp="rdio:DRA818_SA818", ref_at=S.tp(112, 11.5), val_at=S.tp(112, 14))
 vb_ = S.P("U6", "8"); W(vb_, (vb_[0], vb_[1] - 4)); p5((vb_[0], vb_[1] - 4))
 gnd(S.P("U6", "9"))
-bus = [("SQ", "J2", "7", "1"), ("PD", "J3", "8", "6"), ("PTT", "J3", "9", "5"), ("DRA_RXD", "J3", "11", "16"),
-       ("DRA_TXD", "J3", "12", "17"), ("HL", "J3", "2", "7")]
+# control bus: straight wires between the two header rows and the module
+bus = [("PTT", "J3", "9", "5"), ("PD", "J3", "8", "6"), ("DRA_RXD", "J3", "11", "16"),
+       ("DRA_TXD", "J3", "12", "17"), ("HL", "J3", "2", "7"), ("SQ", "J2", "7", "1")]
 for name, jr, jp, mp in bus:
     a_, b_ = S.P(jr, jp), S.P("U6", mp)
     assert a_[1] == b_[1], (name, a_, b_)
-    W(a_, b_); S.lab(name, (68, a_[1]), 0)
-for jp, mp, ne, nm_ in (("5", "3", "ADC_IN", "AF_OUT"), ("9", "18", "TX_AUDIO", "MIC_IN")):
-    a_, b_ = S.P("J2", jp), S.P("U6", mp)
-    W(a_, (a_[0] + 6, a_[1])); S.lab(ne, (a_[0] + 6, a_[1]), 0)
-    W(b_, (b_[0] - 6, b_[1])); S.lab(nm_, (b_[0] - 6, b_[1]), 180)
-a_ = S.P("J2", "10"); W(a_, (a_[0] + 6, a_[1])); S.lab("ADC_BIAS", (a_[0] + 6, a_[1]), 0)
-S.text("DRA_RXD = module RXD (IO17)\nDRA_TXD = module TXD (IO16)\nSQ is active low", (56, 48), 1.27)
-S.text("H/L: floating = 1 W, low = 0.5 W.\nIO23: output LOW or input,\nnever drive it HIGH.", (100, 48), 1.27)
+    if name == "PTT":
+        W(a_, (84, a_[1]), b_)
+    else:
+        W(a_, b_)
+    S.lab(name, (62 if name == "PTT" else 70, a_[1]), 0)
+# PTT pull-up: from +3V3 straight down onto the PTT wire
+p33((84, 12)); res("R12", "10k", (84, 12), "down")
+# RX audio: IO34 <- node <- C15 <- AF_OUT, bias from IO26 into the node
+a_, b_ = S.P("J2", "5"), S.P("U6", "3"); assert a_[1] == b_[1]
+W(a_, (74, a_[1]), (80, a_[1])); S.lab("ADC_IN", (43, a_[1]), 0)
+f = cap("C15", "1uF", (80, a_[1]), "right", pin0="2")
+W(f, b_); S.lab("AF_OUT", (88, a_[1]), 0)
+a_ = S.P("J2", "10"); W(a_, (62, a_[1])); S.lab("ADC_BIAS", (43, a_[1]), 0)
+f = S.place2(R, "R15", "10k", (62, a_[1]), "right", pins=("1", "2"), fp=R0603)
+W(f, (74, a_[1]), (74, S.P("J2", "5")[1]))
+# TX audio: IO25 -> R16 -> node (R19, C16 to ground) -> C18 -> MIC_IN
+a_, b_ = S.P("J2", "9"), S.P("U6", "18"); assert a_[1] == b_[1]
+W(a_, (54, a_[1])); S.lab("TX_AUDIO", (43, a_[1]), 0)
+f = res("R16", "22k", (54, a_[1]), "right")
+W(f, (74, a_[1]))
+gnd(res("R19", "220R", (66, a_[1]), "down")); gnd(cap("C16", "220nF", (74, a_[1]), "down"))
+f = cap("C18", "100nF", (82, a_[1]), "right")
+W((74, a_[1]), (82, a_[1])); W(f, b_); S.lab("MIC_IN", (89, a_[1]), 0)
 # antenna
-S.place("Connector:Conn_Coaxial", "J1", "CONSMA020.062-G", (130, 30), fp="rdio:CONSMA020_062_G")
+S.place("Connector:Conn_Coaxial", "J1", "CONSMA020.062-G", (130, 34), fp="rdio:CONSMA020_062_G", ref_at=S.tp(130, 27.5), val_at=S.tp(130, 29.7), just="")
 W(S.P("U6", "12"), S.P("J1", "1")); gnd(S.P("J1", "2"))
-# PTT pull-up
-p33((124, 58)); r12 = res("R12", "10k", (124, 58), "down"); W(r12, (124, 68)); S.lab("PTT", (124, 68), 0)
-S.text("R12: PTT held high,\nmodule stays in receive\nwhile the ESP32 boots.", (106, 72), 1.27)
-# RX audio
-S.text("RX: AF_OUT -> 1uF -> IO34.\nIO26 biases it to 1.75 V\nthrough 10k (as the firmware expects).", (56, 58), 1.27)
-y = 76
-W((58, y), (62, y)); S.lab("AF_OUT", (58, y), 180)
-f = cap("C15", "1uF", (62, y), "right")
-W(f, (92, y)); S.lab("ADC_IN", (92, y), 0)
-fr = S.place2(R, "R15", "10k", (78, y), "up", pins=("2", "1"), fp=R0603)
-W(fr, (fr[0], fr[1] - 2)); S.lab("ADC_BIAS", (fr[0], fr[1] - 2), 0)
-# TX audio
-S.text("TX: IO25 (PDM) -> 22k / 220R divider with 220nF\nlow-pass (module wants about 10 mV) -> 100nF -> MIC_IN.\nAudio values are first-pass; compare with the working board.", (56, 84), 1.27)
-y = 94
-W((58, y), (62, y)); S.lab("TX_AUDIO", (58, y), 180)
-f = res("R16", "22k", (62, y), "right")
-W(f, (92, y)); gnd(res("R19", "220R", (76, y), "down")); gnd(cap("C16", "220nF", (86, y), "down"))
-f = cap("C18", "100nF", (98, y), "right")
-W((92, y), (98, y)); W(f, (118, y)); S.lab("MIC_IN", (118, y), 0)
+# notes
+S.text("RX: AF_OUT -> 1uF -> IO34. IO26 biases\nit to 1.75 V through 10k (as the firmware\nexpects).", (56, 66), 1.27)
+S.text("TX: IO25 (PDM) -> 22k / 220R divider with 220nF\nlow-pass (module wants about 10 mV) -> 100nF -> MIC_IN.\nAudio values are first-pass; compare with the working board.", (56, 74), 1.27)
+S.text("DRA_RXD = module RXD (IO17)\nDRA_TXD = module TXD (IO16)\nSQ is active low", (56, 86), 1.27)
+S.text("H/L: floating = 1 W, low = 0.5 W.\nIO23: output LOW or input,\nnever drive it HIGH.", (100, 84), 1.27)
+S.text("R12: PTT held high,\nmodule stays in receive\nwhile the ESP32 boots.", (100, 91), 1.27)
 
 # ============================================================ 3. radio supply ====
 S.ox = -8
