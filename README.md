@@ -79,7 +79,7 @@ A 57.3 × 25.4 mm two-layer board for an ESP32 38-pin DevKit (NodeMCU-32S style)
 
 - The module's supply pin is fed straight from the DevKit's 5 V pin, with a 47 µF and a 100 nF capacitor next to the module. The module's datasheet allows 3.3 to 4.5 V, so check the voltage on your DevKit's 5 V pin (many boards drop it through a diode from USB) before the first power-up.
 - Pin numbers, the module name and the antenna end are printed on the top silkscreen inside the module outline, to help with placing it.
-- Test status: built and working. The module's footprint and the DevKit's pin spacing were checked against real parts. The transmit network (22 k in series, 220 Ω and 220 nF to ground) divides the signal by about 100 and rolls it off from a few hundred hertz, so the firmware compensates with a higher transmit gain and a first-order treble boost (`firmware/idf/main/board.h`); the level and the frequency response were checked through a second radio.
+- Test status: built and working. The module's footprint and the DevKit's pin spacing were checked against real parts. The transmit network (22 k in series, 220 Ω and 220 nF to ground) divides the signal by about 100 and rolls it off from about 3.3 kHz, so the firmware only compensates with a higher transmit gain (`firmware/idf/main/board.h`). The level has still to be checked on air with the corrected 220 nF capacitor.
 
 ### Harmonic filters (2 m and 70 cm)
 
