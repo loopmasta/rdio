@@ -1,9 +1,8 @@
-# This repository only holds the README, the hardware design and the screenshots.
+# This repository only holds the README and the screenshots.
 /*
 !/.gitignore
 !/README.md
 !/docs/
-!/hardware/
 
 .DS_Store
 *.lck
