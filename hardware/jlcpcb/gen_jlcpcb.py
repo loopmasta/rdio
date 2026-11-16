@@ -36,9 +36,16 @@ LCSC = {
     ("100k", "R_0603_1608Metric"): "C25803",      # UNI-ROYAL 0603WAF1003T5E, 1 %
     ("1k", "R_0603_1608Metric"): "C21190",        # UNI-ROYAL 0603WAF1001T5E, 1 %
     ("0R link", "R_0603_1608Metric"): "C21189",   # UNI-ROYAL 0603WAF0000T5E, 0 ohm
+    # filter boards (C0G capacitors, Murata LQW wirewound inductors)
+    ("22 pF", "C_0402_1005Metric"): "C70464",     # Samsung CL05C220JB5NNNC, 22 pF C0G +-5 % 50 V
+    ("39 pF", "C_0402_1005Metric"): "C86288",     # Samsung CL05C390JB5NNNC, 39 pF C0G +-5 % 50 V
+    ("8.2 pF", "C_0402_1005Metric"): "C318599",   # Samsung CL05C8R2CB5NNNC, 8.2 pF C0G +-0.25 pF 50 V
+    ("68 nH", "L_0603_1608Metric"): "C86135",     # Murata LQW18AN68NG00D, 68 nH +-2 %
+    ("22 nH", "L_0402_1005Metric"): "C86129",     # Murata LQW15AN22NG00D, 22 nH +-2 %
+    ("27 nH", "L_0402_1005Metric"): "C98057",     # Murata LQW15AN27NG00D, 27 nH +-2 %
+    # still open: 13 pF C0G 0402 (70 cm board) and 82 nH 0603 (2 m board), see README.md
 }
-# Looked up on LCSC (product data of each number) on 2026-11-16. The filter boards have no numbers yet: the inductor series is still to be chosen
-# (see hardware/filter/README.md).
+# Looked up on LCSC (product data of each number) on 2026-11-16.
 SMD = ("C_", "R_", "L_", "D_")
 
 
