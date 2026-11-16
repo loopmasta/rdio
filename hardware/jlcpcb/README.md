@@ -4,7 +4,7 @@ Gerber, drill, bill of materials and placement files for the three boards of thi
 
 | Folder | Board | Source | Size |
 |---|---|---|---|
-| `radio/` | carrier board | [../radio](../radio/README.md) | 57.4 × 25.5 mm, 2 layers, 1.6 mm |
+| `radio/` | carrier board | [../radio](../radio/README.md) | 57.4 × 26.0 mm, 2 layers, 1.6 mm |
 | `filters/vhf/` | 2 m low-pass filter | [../filter](../filter/README.md) | 38.6 × 12.4 mm, 2 layers, 1.6 mm |
 | `filters/uhf/` | 70 cm low-pass filter | [../filter](../filter/README.md) | 35.0 × 12.4 mm, 2 layers, 1.6 mm |
 
@@ -16,7 +16,7 @@ Every folder has:
 
 ## What is assembled, what is soldered by hand
 
-JLCPCB assembles the SMD chips only (resistors, ceramic capacitors, inductors). **Soldered by hand:** the electrolytic capacitors of the carrier board (C2, C6), the SMA connectors, the two 19-pin DevKit headers and the radio module. Parts marked DNP (FB1 and C8 on the carrier board) are not in the files.
+JLCPCB assembles the SMD chips only (resistors, ceramic capacitors, inductors). **Soldered by hand:** the electrolytic capacitors of the carrier board (C2, C6), the SMA connector (J2 or J3, see the radio README), the two 19-pin DevKit headers and the radio module. Parts marked DNP (FB1 and C8 on the carrier board) are not in the files.
 
 On the carrier board all the assembled parts are on the **top** side, so order assembly for the top side (the usual choice). The parts are 0603 resistors and capacitors without polarity, so a rotation that is off by 180° does no harm.
 

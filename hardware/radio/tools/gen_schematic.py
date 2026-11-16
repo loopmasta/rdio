@@ -3,6 +3,7 @@ import re, uuid, sys
 
 Usage:  python3 -I hardware/radio/tools/gen_schematic.py [output.kicad_sch]     (default: hardware/radio/rdio.kicad_sch)
 
+Two antenna connectors share the antenna net: J2 (edge mount) and J3 (right angle); the builder fits one of them.
 Reads tools/base_lib_symbols.txt (the NodeMCU symbol plus the Device/power symbols) and KiCad's Connector.kicad_sym (SMA symbol).
 All ids are deterministic, so running it twice gives the same file. Regenerating changes every id once compared with an older file:
 rebuild the PCB afterwards with tools/make_pcb.sh (it works from the netlist of the schematic).
@@ -112,11 +113,11 @@ def label(net,x,y,a=0):
     body.append(f'\t(label "{net}" (at {f(x)} {f(y)} {a}) (effects (font (size 1.27 1.27)) (justify left bottom)) (uuid "{U()}"))')
 def text(t,x,y): body.append(f'\t(text "{t}" (exclude_from_sim no) (at {f(x)} {f(y)} 0) (effects (font (size 1.27 1.27)) (justify left)) (uuid "{U()}"))')
 def nc(x,y): body.append(f'\t(no_connect (at {f(x)} {f(y)}) (uuid "{U()}"))')
-def symbol(lib_id,ref,val,x,y,pins,rot=0,hide=False,hideval=False,vat=None,fp=None,dnp=False):
+def symbol(lib_id,ref,val,x,y,pins,rot=0,hide=False,hideval=False,vat=None,fp=None,dnp=False,nopos=False):
     h = ' (hide yes)' if hide else ''
     hv = ' (hide yes)' if hideval else ''
     vx,vy = vat if vat else (x+2.54, y+1.27)
-    s = f'\t(symbol (lib_id "{lib_id}") (at {f(x)} {f(y)} {rot}) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp {"yes" if dnp else "no"}) (uuid "{U()}")\n'
+    s = f'\t(symbol (lib_id "{lib_id}") (at {f(x)} {f(y)} {rot}) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes){" (in_pos_files no)" if nopos else ""} (dnp {"yes" if dnp else "no"}) (uuid "{U()}")\n'
     if rot == 90 and not hide:
         s += f'\t\t(property "Reference" "{ref}" (at {f(x)} {f(y-3.81)} 0) (effects (font (size 1.27 1.27)){h}))\n'
         s += f'\t\t(property "Value" "{val}" (at {f(x)} {f(y+3.81)} 0) (effects (font (size 1.27 1.27)){hv}))\n'
@@ -215,7 +216,7 @@ for ref,val,cx in (("C6","220uF",213.36),("C7","100nF",226.06)):
     wire(cx,173.99,cx,179.07); power("GND",cx,179.07)
 # ---- antenna (bottom pin 12)
 ax2,ay2 = sa_pos("12"); wire(ax2,ay2,ax2,190.5)
-symbol("Connector:Conn_Coaxial","J2","SMA edge",ax2+5.08,190.5,["1","2"],fp="rdio:SMA_KooingTech_SMA-KE_EdgeMount")
+symbol("Connector:Conn_Coaxial","J2","SMA edge",ax2+5.08,190.5,["1","2"],fp="rdio:SMA_KooingTech_SMA-KE_EdgeMount",dnp=True)     # not fitted in the default build (J3 is)
 power("GND",ax2+5.08,195.58)
 
 # ---- 3V3 decoupling
@@ -236,6 +237,14 @@ notes = [
  "Power: 5V comes from the NodeMCU own USB-C through its VIN pin (pin 19, net VIN_ESP). The module VBAT hangs off it through R9 (0R link); FB1 + C8 are DO NOT POPULATE (fit FB1 + C8 and remove R9 to try the filter). The radio draws up to 0.75A in TX: use a USB source rated >= 1A. Do not power the module from the NodeMCU 3V3 pin. Fit antenna or dummy load before transmitting.",
 ]
 for k,t in enumerate(notes): text(t,20,258+4.5*k)
+
+# ---- second antenna connector (added last so that every earlier id stays the same): a right-angle SMA on top of the board, same net as J2.
+# Fit either J2 (edge mount) or J3, not both.
+J3DY = 20.32
+wire(ax2,190.5,ax2,190.5+J3DY); junc(ax2,190.5)
+symbol("Connector:Conn_Coaxial","J3","SMA 90deg",ax2+5.08,190.5+J3DY,["1","2"],fp="rdio:SMA_BAT_Wireless_BWSMA-KWE-Z001",nopos=True)    # hand soldered, not in the position file
+power("GND",ax2+5.08,195.58+J3DY)
+text("ANTENNA CONNECTOR: fit J2 (edge mount) OR J3 (right angle, on top of the board), never both. Default build: J3 fitted, J2 marked DNP.",ax2-40,190.5+J3DY+14)
 
 out = f'''(kicad_sch
 \t(version 20250114)

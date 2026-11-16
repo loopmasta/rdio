@@ -5,7 +5,7 @@ import os, sys, json, math, pcbnew
 from pcbnew import FromMM as MM, VECTOR2I
 b = pcbnew.LoadBoard(sys.argv[1])
 A = json.load(open("anchors.json"))
-E = A["edges"]; EDGE_W, EDGE_E, HALF, CX = E["w"], E["e"], E["half"], E["cx"]
+E = A["edges"]; EDGE_W, EDGE_E, HALF, HALF_N, CX = E["w"], E["e"], E["half"], E["half_n"], E["cx"]      # HALF_N: the -y edge
 byname = b.GetNetsByName()
 gnd = [n for n in byname.values() if n.GetNetname() == "GND"][0]
 ant = [n for n in byname.values() if n.GetNetname() == "Net-(J2-In)"][0]
@@ -21,7 +21,7 @@ def zone(layer):
     z.SetThermalReliefGap(MM(0.3)); z.SetThermalReliefSpokeWidth(MM(0.4))
     z.SetIslandRemovalMode(pcbnew.ISLAND_REMOVAL_MODE_NEVER)        # keep every piece for now: vias below save the useful ones
     o = z.Outline(); o.NewOutline()
-    for x, y in ((EDGE_W+0.2,-HALF+0.2),(EDGE_E-0.2,-HALF+0.2),(EDGE_E-0.2,HALF-0.2),(EDGE_W+0.2,HALF-0.2)): o.Append(MM(x), MM(y))
+    for x, y in ((EDGE_W+0.2,-HALF_N+0.2),(EDGE_E-0.2,-HALF_N+0.2),(EDGE_E-0.2,HALF-0.2),(EDGE_W+0.2,HALF-0.2)): o.Append(MM(x), MM(y))
     b.Add(z)
 LAYERS = A.get("layers", 2)
 LAY = [pcbnew.F_Cu] + ([pcbnew.In1_Cu, pcbnew.In2_Cu] if LAYERS == 4 else []) + [pcbnew.B_Cu]
@@ -53,7 +53,7 @@ def solid(pos): return all(z.HitTestFilledArea(l, pos, 0) for l, z in zones.item
 RING = ((1,0),(-1,0),(0,1),(0,-1),(.7,.7),(-.7,.7),(.7,-.7),(-.7,-.7))
 def try_via(x, y, hole_d=1.0, via_d=1.3):
     c = VECTOR2I(MM(x), MM(y))
-    if not (EDGE_W + 0.8 < x < EDGE_E - 0.8 and -HALF + 0.8 < y < HALF - 0.8): return False
+    if not (EDGE_W + 0.8 < x < EDGE_E - 0.8 and -HALF_N + 0.8 < y < HALF - 0.8): return False
     if near(c, holes, hole_d) or near(c, placed, via_d): return False
     if not solid(c) or not all(solid(VECTOR2I(MM(x + R*dx), MM(y + R*dy))) for dx, dy in RING): return False
     v = pcbnew.PCB_VIA(b); v.SetPosition(c); v.SetViaType(pcbnew.VIATYPE_THROUGH); v.SetNet(gnd)
@@ -61,7 +61,7 @@ def try_via(x, y, hole_d=1.0, via_d=1.3):
 n_grid = n_fence = n_island = 0
 x = EDGE_W + MARGIN
 while x < EDGE_E - MARGIN:                                    # 1. regular grid
-    y = -HALF + MARGIN
+    y = -HALF_N + MARGIN
     while y < HALF - MARGIN:
         n_grid += try_via(x, y, 1.2, 1.5)
         y += STITCH

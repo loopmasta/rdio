@@ -1,0 +1,10 @@
+(version 1)
+# J2 (edge-mount SMA) and J3 (right-angle SMA) are alternatives for the same antenna connection: the builder fits one of them,
+# so their footprints overlap on purpose. J3's outer ground leg also lies a hair inside the courtyard of the radio module U2
+# (its outline is 0.05 mm away from the copper ring; the module body is on the other side of the board).
+(rule "J2 and J3 are alternatives"
+	(constraint courtyard_clearance (min -100mm))
+	(condition "(A.Reference == 'J2' && B.Reference == 'J3') || (A.Reference == 'J3' && B.Reference == 'J2')"))
+(rule "J3 and the module"
+	(constraint courtyard_clearance (min -100mm))
+	(condition "(A.Reference == 'J3' && B.Reference == 'U2') || (A.Reference == 'U2' && B.Reference == 'J3')"))

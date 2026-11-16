@@ -47,8 +47,10 @@ for pat in ("VBAT", "/VIN_ESP"): ns.SetNetclassPatternAssignment(pat, "Power")
 # ---- geometry (frame of the rdio project): DevKit centre at 0,0, antenna end -x, USB end +x
 EXT = 9.0                        # extra length at the antenna/SMA end: room for the SMA connector and the bulk capacitor
 EDGE_W, EDGE_E, HALF = -24.13 - EXT, 24.13, 12.7
+HALF_N = 13.2                    # the long edge on the -y side (the antenna track side) lies 0.5 mm further out: room for the ground legs of the right-angle SMA J3
 CX = -7.5                        # SA818S centre (as in the rdio project)
 SMA_Y = -9.1                     # KooingTech SMA-KE: RF pad level with the module ANT pad (its ground pads sit at +-2.55)
+J3_X = -29.0                     # right-angle SMA (alternative to J2, body on the bottom side): centre pin on the antenna track, ground legs 0.5 mm inside the board edge, barrel towards the antenna end
 
 def load(fpid):
     lib, name = fpid.split(':')
@@ -57,7 +59,7 @@ def load(fpid):
     return fp
 # ref: (x, y, rot, bottom)
 place = {
- "U1": (0, 0, 0, False), "U2": (CX, 0, 180, False), "J2": (EDGE_W, SMA_Y, 180, False),
+ "U1": (0, 0, 0, False), "U2": (CX, 0, 180, False), "J2": (EDGE_W, SMA_Y, 180, False), "J3": (J3_X, SMA_Y, 90, True),
  "C6": (-19.0, 6.6, 0, True), "C7": (-26.8, 9.8, 0, True),
  "C1": (-3.0, 5.0, 0, True), "R1": (-9.0, -5.0, 90, True), "R2": (-11.0, -5.0, 90, True),
  "C4": (-2.0, -6.5, 0, True), "R3": (2.0, -6.5, 0, True), "C5": (9.0, -5.0, 90, True), "R4": (12.0, -5.0, 90, True),
@@ -65,7 +67,8 @@ place = {
  "C2": (-18.0, -3.5, 0, True), "C3": (-12.0, -9.0, 0, True),
  "R9": (19.0, -7.5, 0, True), "FB1": (14.5, -7.5, 0, True), "C8": (19.0, -3.0, 0, True),
 }
-DNP = {"FB1", "C8"}
+DNP = {"FB1", "C8", "J2"}            # J2 (edge-mount SMA) is not fitted in the default build: J3 (right angle) is
+NOPOS = {"J3"}                   # hand soldered, not in the position file; the 3D viewer can show or hide it with "footprints not in position file"
 fps = {}
 for ref, c in comps.items():
     fp = load(c['fp']); fp.SetReference(ref); fp.SetValue(c['value'])
@@ -77,6 +80,7 @@ for ref, c in comps.items():
     if r: fp.SetOrientationDegrees(r)
     if bot: fp.Flip(fp.GetPosition(), True)
     if ref in DNP: fp.SetDNP(True)
+    if ref in NOPOS: fp.SetAttributes(fp.GetAttributes() | pcbnew.FP_EXCLUDE_FROM_POS_FILES)
     fps[ref] = fp
 
 ni = {}
@@ -99,7 +103,7 @@ for ref, pin, key in (("U2", "12", "ant_module"), ("J2", "1", "ant_sma")):
     p = [q for q in fps[ref].Pads() if q.GetNumber() == pin][0]
     bb = p.GetBoundingBox()
     anchors[key] = dict(x=ToMM(p.GetPosition().x), y=ToMM(p.GetPosition().y), left=ToMM(bb.GetLeft()), right=ToMM(bb.GetRight()))
-anchors["edges"] = dict(w=EDGE_W, e=EDGE_E, half=HALF, cx=CX)
+anchors["edges"] = dict(w=EDGE_W, e=EDGE_E, half=HALF, half_n=HALF_N, cx=CX)
 anchors["layers"] = LAYERS
 anchors["ant_width"] = 0.4 if LAYERS == 4 else 0.8      # 0.4 mm over the 0.21 mm prepreg to the In1 plane is about 50 ohm
 json.dump(anchors, open("anchors.json", "w"))
@@ -107,7 +111,7 @@ json.dump(anchors, open("anchors.json", "w"))
 def line(x1, y1, x2, y2, layer=pcbnew.Edge_Cuts, w=0.1):
     s = pcbnew.PCB_SHAPE(b); s.SetShape(pcbnew.SHAPE_T_SEGMENT); s.SetLayer(layer)
     s.SetStart(VECTOR2I(MM(x1), MM(y1))); s.SetEnd(VECTOR2I(MM(x2), MM(y2))); s.SetWidth(MM(w)); b.Add(s)
-for a, c in (((EDGE_W,-HALF),(EDGE_E,-HALF)),((EDGE_E,-HALF),(EDGE_E,HALF)),((EDGE_E,HALF),(EDGE_W,HALF)),((EDGE_W,HALF),(EDGE_W,-HALF))): line(*a, *c)
+for a, c in (((EDGE_W,-HALF_N),(EDGE_E,-HALF_N)),((EDGE_E,-HALF_N),(EDGE_E,HALF)),((EDGE_E,HALF),(EDGE_W,HALF)),((EDGE_W,HALF),(EDGE_W,-HALF_N))): line(*a, *c)
 
 def area(pts, name, layers, tracks=True, pours=True):
     z = pcbnew.ZONE(b); z.SetIsRuleArea(True); z.SetZoneName(name)
