@@ -74,5 +74,5 @@ More details (footprints, the SMA connector, the shielding by copper pours, and 
 | `rdio_schematic.pdf` | the schematic as a PDF |
 | `rdio.pretty/`, `rdio.3dshapes/`, `fp-lib-table` | footprints (SA818S, DevKit header holes, SMA edge connector) and their 3D models |
 | `tools/` | the scripts that generate the schematic and the board, see [tools/README.md](tools/README.md) |
-| `SA818S V1.8.pdf`, `SA818S.png`, `NodeMCU ESP32S 38pin.png` | the module's datasheet and pictures of the parts |
+| `SA818S V1.8.pdf`, `NodeMCU ESP32S 38pin.png` | the module's datasheet and a picture of the DevKit |
 | `design-notes.md` | design notes |
