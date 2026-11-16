@@ -57,11 +57,11 @@ A 57.4 × 25.5 mm two-layer board for an ESP32 38-pin DevKit (NodeMCU-32S style)
 <table>
   <tr>
     <td align="center"><img src="hardware/radio/rdio-pcb-3d.png" width="420" alt="Top side of the carrier board with the DevKit on top and the SMA jack"></td>
-    <td align="center"><img src="hardware/radio/rdio-pcb-bottom.png" width="420" alt="Bottom side of the carrier board with the radio module footprint and the DevKit pin rows"></td>
+    <td align="center"><img src="hardware/radio/rdio-pcb-bottom.png" width="420" alt="Bottom side of the carrier board with the radio module, the SMA jack and the DevKit below"></td>
   </tr>
   <tr>
     <td align="center">Top: DevKit (the audio and supply parts are under it), SMA jack</td>
-    <td align="center">Bottom: radio module footprint, DevKit pin rows</td>
+    <td align="center">Bottom: radio module, SMA jack, DevKit pin rows</td>
   </tr>
 </table>
 

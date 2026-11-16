@@ -5,7 +5,7 @@ These scripts produce `hardware/radio/rdio.kicad_sch` and `hardware/radio/rdio.k
 | file | what it does |
 |---|---|
 | `gen_schematic.py` | writes the schematic (direct pin-to-pin wiring, net names on the wires). Reads `base_lib_symbols.txt` (NodeMCU symbol, Device and power symbols) and KiCad's `Connector.kicad_sym` (SMA). Deterministic ids. |
-| `gen_3d_placeholders.py` | writes the simple 3D placeholder models in `hardware/radio/rdio.3dshapes/` (DevKit on its two 5 mm headers and its own 2.5 mm sockets, SA818S). Edit `HEADER_H`, `SOCKET_H` etc. there, then rebuild with `make_pcb.sh --install`. |
+| `gen_3d_placeholders.py` | writes the simple 3D placeholder models in `hardware/radio/rdio.3dshapes/` (DevKit on its two 5 mm headers and its own 2.5 mm sockets, SA818S, SMA jack). Edit `HEADER_H`, `SOCKET_H` etc. there, then rebuild with `make_pcb.sh --install`. |
 | `make_pcb.sh` | the whole PCB pipeline, see below. `--install` copies the result to `hardware/radio/rdio.kicad_pcb`. Default is the 2-layer board; `LAYERS=4` builds a 4-layer variant with a solid GND plane on In1.Cu. |
 | `patch_dsn.py` | patches the Specctra DSN before Freerouting: In1.Cu as GND plane, route only some nets (stage A: the long power nets), router clearance margin. |
 | `build_pcb.py` | netlist -> placed board. **Part placement is the `place` table** (DevKit frame: x right towards the USB end, y down, mm). |
@@ -35,11 +35,11 @@ Things to know:
 
 ## The pictures in `hardware/radio/`
 
-`rdio-pcb-3d.png` (top side, with the DevKit placeholder and the SMA connector; the small parts are hidden under the DevKit) and `rdio-pcb-bottom.png` (bottom side, the bare board with the radio module footprint) are KiCad renders:
+`rdio-pcb-3d.png` (top side, with the DevKit placeholder and the SMA connector; the small parts are hidden under the DevKit) and `rdio-pcb-bottom.png` (bottom side, with the radio module, the SMA connector and the DevKit stack below) are KiCad renders:
 
     cd hardware/radio
-    KICAD_CONFIG_HOME=<dir with a copy of your KiCad 10.0 settings in which show_footprints_insert and show_footprints_normal are true in 3d_viewer.json> \
-      kicad-cli pcb render --side top --quality high --preset follow_pcb_editor --width 2000 --height 1250 --rotate '-50,0,-20' -o rdio-pcb-3d.png rdio.kicad_pcb
-    kicad-cli pcb render --side bottom --quality high --width 2000 --height 1250 --rotate '-50,0,-20' -o rdio-pcb-bottom.png rdio.kicad_pcb
+    export KICAD_CONFIG_HOME=<dir with a copy of your KiCad 10.0 settings in which show_footprints_insert and show_footprints_normal are true in 3d_viewer.json>
+    kicad-cli pcb render --side top --quality high --preset follow_pcb_editor --width 2000 --height 1250 --rotate '-50,0,-20' -o rdio-pcb-3d.png rdio.kicad_pcb
+    kicad-cli pcb render --side bottom --quality high --preset follow_pcb_editor --width 2000 --height 1250 --rotate '-50,0,-20' -o rdio-pcb-bottom.png rdio.kicad_pcb
 
-`kicad-cli` takes the 3D viewer's settings from the user configuration, and by default the parts are switched off there; the bottom picture is meant to be the bare board, so it needs no change. The models are the placeholders from `gen_3d_placeholders.py` and KiCad's own capacitor, resistor and inductor models.
+`kicad-cli` takes the 3D viewer's settings from the user configuration, and by default the parts are switched off there, so both pictures need the copy with them switched on. The models are the placeholders from `gen_3d_placeholders.py` and KiCad's own capacitor, resistor and inductor models.
