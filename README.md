@@ -115,9 +115,9 @@ Transmitting needs an amateur radio licence and must follow the rules that apply
 
 ## Repository contents
 
-This repository lets a small group of testers order the hardware, build it, flash the firmware and install the app, with no software knowledge or development tools. It holds the hardware design (`hardware/`), the screenshots (`docs/`) and this description.
+This repository lets a small group of testers order the hardware, build it and install the app, with no software knowledge or development tools. It holds the hardware design (`hardware/`), the screenshots (`docs/`) and this description.
 
 The software is not included and does not need to be built:
 
 - **iOS app:** [download rdio from the App Store](https://apps.apple.com/de/app/rdio/id6831735571?l=en-GB).
-- **Firmware:** installed from your browser with the [web flasher](https://loopmasta.github.io/rdio/flash/). Connect the ESP32 over USB, open the page in Chrome or Edge on a computer and press install.
+- **Firmware:** not published here. The web flasher has been removed, so there is no browser installer for the firmware at the moment.
