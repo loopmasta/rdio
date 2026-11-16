@@ -2,8 +2,6 @@
 
 **rdio** turns your iPhone into a VHF/UHF radio. It connects to one or more ESP32-powered devices equipped with radio modules over Wi-Fi. Listen to transmissions, talk with push-to-talk, save your favourite channels and repeaters, and exchange APRS messages in a familiar chat-style interface.
 
-**[Get the app on the App Store](https://apps.apple.com/de/app/rdio/id6831735571?l=en-GB)**
-
 <table>
   <tr>
     <td align="center"><img src="docs/1-main.png" width="150" alt="Main screen: frequency, signal and audio meters, channel list"></td>
@@ -79,7 +77,7 @@ A 57.3 × 25.4 mm two-layer board for an ESP32 38-pin DevKit (NodeMCU-32S style)
 
 - The module's supply pin is fed straight from the DevKit's 5 V pin, with a 47 µF and a 100 nF capacitor next to the module. The module's datasheet allows 3.3 to 4.5 V, so check the voltage on your DevKit's 5 V pin (many boards drop it through a diode from USB) before the first power-up.
 - Pin numbers, the module name and the antenna end are printed on the top silkscreen inside the module outline, to help with placing it.
-- Test status: built and working. The module's footprint and the DevKit's pin spacing were checked against real parts. The transmit network (22 k in series, 220 Ω and 220 nF to ground) divides the signal by about 100 and rolls it off from about 3.3 kHz, so the firmware only compensates with a higher transmit gain (`firmware/idf/main/board.h`). The level has still to be checked on air with the corrected 220 nF capacitor.
+- Test status: built and working. The module's footprint and the DevKit's pin spacing were checked against real parts. The transmit network (22 k in series, 220 Ω and 220 nF to ground) divides the signal by about 100 and rolls it off from about 3.3 kHz, so the firmware only has to compensate with a higher transmit gain. The level has still to be checked on air with the corrected 220 nF capacitor.
 
 ### Harmonic filters (2 m and 70 cm)
 
@@ -119,5 +117,5 @@ This repository lets a small group of testers order the hardware, build it and i
 
 The software is not included and does not need to be built:
 
-- **iOS app:** [download rdio from the App Store](https://apps.apple.com/de/app/rdio/id6831735571?l=en-GB).
+- **iOS app:** the new version is not available yet, so there is no download link at the moment.
 - **Firmware:** not published here. The web flasher has been removed, so there is no browser installer for the firmware at the moment.
