@@ -5,7 +5,7 @@ These scripts produce `hardware/radio/rdio.kicad_sch` and `hardware/radio/rdio.k
 | file | what it does |
 |---|---|
 | `gen_schematic.py` | writes the schematic (direct pin-to-pin wiring, net names on the wires). Reads `base_lib_symbols.txt` (NodeMCU symbol, Device and power symbols) and KiCad's `Connector.kicad_sym` (SMA). Deterministic ids. |
-| `gen_3d_placeholders.py` | writes the simple 3D placeholder models in `hardware/radio/rdio.3dshapes/` (DevKit with its two sockets, SA818S). Edit `GAP` etc. there, then rebuild with `make_pcb.sh --install`. |
+| `gen_3d_placeholders.py` | writes the simple 3D placeholder models in `hardware/radio/rdio.3dshapes/` (DevKit on its two 5 mm headers and its own 2.5 mm sockets, SA818S). Edit `HEADER_H`, `SOCKET_H` etc. there, then rebuild with `make_pcb.sh --install`. |
 | `make_pcb.sh` | the whole PCB pipeline, see below. `--install` copies the result to `hardware/radio/rdio.kicad_pcb`. Default is the 2-layer board; `LAYERS=4` builds a 4-layer variant with a solid GND plane on In1.Cu. |
 | `patch_dsn.py` | patches the Specctra DSN before Freerouting: In1.Cu as GND plane, route only some nets (stage A: the long power nets), router clearance margin. |
 | `build_pcb.py` | netlist -> placed board. **Part placement is the `place` table** (DevKit frame: x right towards the USB end, y down, mm). |

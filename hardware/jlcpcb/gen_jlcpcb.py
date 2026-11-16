@@ -8,7 +8,7 @@ For every board it runs kicad-cli (gerbers, drill files, position file) and writ
   <name>-gerber.zip  the same files in one archive, ready to upload
   bom.csv            bill of materials of the parts JLCPCB assembles
   cpl.csv            their positions (component placement list)
-Only SMD chips are assembled. Electrolytic capacitors, the SMA connectors, the DevKit's header pins and the radio module are soldered by hand.
+Only SMD chips are assembled. Electrolytic capacitors, the SMA connectors, the two 19-pin DevKit headers and the radio module are soldered by hand.
 Parts marked DNP are left out.
 
 Output folders: hardware/jlcpcb/radio/ for the carrier board, hardware/jlcpcb/filters/<band>/ for the filters.
