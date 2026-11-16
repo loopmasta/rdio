@@ -11,6 +11,8 @@ These scripts produce `hardware/radio/rdio.kicad_sch` and `hardware/radio/rdio.k
 | `build_pcb.py` | netlist -> placed board. **Part placement is the `place` table** (DevKit frame: x right towards the USB end, y down, mm). |
 | `export_dsn.py`, `import_ses.py` | Specctra DSN export and SES import (KiCad python). |
 | `post_pcb.py` | after routing: hand-drawn antenna trace (0.8 mm on 2 layers, 0.4 mm on 4), GND pours on every layer (0.25 mm clearance), GND stitching vias (grid, a fence beside the audio chain, one via per pour piece), no top pour under the SA818S, solid GND pad connections. |
+| `flip_pcb.py` | the very last step: turns the whole board over (mirror about the vertical centre line, every item changes side) so that the DevKit and the small parts end up on the top and the radio module and the SMA on the bottom. The other scripts work with the module on the top side; do not run them on the finished board. Refuses to run twice. |
+| `tidy_pcb.py` | last step: removes the antenna corridor rule area (it only keeps the autorouter out; the hand-drawn antenna trace lies inside it), places the reference designators that overlapped something, trims the USB-C outline on the bottom silkscreen around C8. Idempotent. |
 | `remove_dangling_vias.py` | drops vias that touch only one layer (from the KiCad DRC json). |
 
 Typical flow after a schematic change:
@@ -33,7 +35,7 @@ Things to know:
 
 ## The pictures in `hardware/radio/`
 
-`rdio-pcb-3d.png` (top side, with the module, the SMA connector and the DevKit placeholder) and `rdio-pcb-bottom.png` (bottom side, bare board) are KiCad renders:
+`rdio-pcb-3d.png` (top side, with the DevKit placeholder and the SMA connector; the small parts are hidden under the DevKit) and `rdio-pcb-bottom.png` (bottom side, the bare board with the radio module footprint) are KiCad renders:
 
     cd hardware/radio
     KICAD_CONFIG_HOME=<dir with a copy of your KiCad 10.0 settings in which show_footprints_insert and show_footprints_normal are true in 3d_viewer.json> \

@@ -18,7 +18,7 @@ Every folder has:
 
 JLCPCB assembles the SMD chips only (resistors, ceramic capacitors, inductors). **Soldered by hand:** the electrolytic capacitors of the carrier board (C2, C6), the SMA connectors, the DevKit's header pins and the radio module. Parts marked DNP (FB1 and C8 on the carrier board) are not in the files.
 
-On the carrier board all the assembled parts are on the **bottom** side, so order assembly for the bottom side (or both sides). The parts are 0603 resistors and capacitors without polarity, so a rotation that is off by 180° does no harm.
+On the carrier board all the assembled parts are on the **top** side, so order assembly for the top side (the usual choice). The parts are 0603 resistors and capacitors without polarity, so a rotation that is off by 180° does no harm.
 
 ## LCSC part numbers
 

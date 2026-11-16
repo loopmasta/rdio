@@ -134,7 +134,7 @@ def text(t, x, y, size=1.0, angle=0, layer=pcbnew.F_SilkS, th=0.15):
     if layer == pcbnew.B_SilkS: o.SetMirrored(True)
     b.Add(o)
 text("rdio v2", 18.0, 6.5, 1.0)
-text("<- USB end (DevKit below)", 11.0, 9.5, 0.8, 0, pcbnew.B_SilkS)
+text("<- USB end (DevKit above)", 11.0, 9.5, 0.8, 0, pcbnew.B_SilkS)
 # USB-C receptacle of the DevKit: on the DevKit's underside, +x end, centred on y=0 (outline on the bottom silkscreen)
 x1, x2, yy = 16.7, 23.8, 4.5
 for a_, c_ in (((x1,-yy),(x2,-yy)),((x2,-yy),(x2,yy)),((x2,yy),(x1,yy)),((x1,yy),(x1,-yy))): line(*a_, *c_, pcbnew.B_SilkS, 0.2)

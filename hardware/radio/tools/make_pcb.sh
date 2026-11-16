@@ -2,7 +2,7 @@
 # Rebuilds the PCB from hardware/radio/rdio.kicad_sch:
 #   netlist -> placed board (build_pcb.py) -> Specctra DSN (patch_dsn.py) -> Freerouting -> SES import -> antenna trace + GND pours
 #   + stitching vias
-#   (post_pcb.py) -> drop dangling vias -> KiCad DRC.
+#   (post_pcb.py) -> drop dangling vias -> tidy (antenna corridor, reference designators, USB-C outline) -> flip (module and SMA to the bottom side, DevKit and small parts to the top) -> KiCad DRC.
 # Usage: [LAYERS=4] hardware/radio/tools/make_pcb.sh [--install]       (default: 2 layers; LAYERS=4 adds a solid GND plane on In1.Cu)     (--install copies the result to hardware/radio/rdio.kicad_pcb)
 # Needs KiCad 10 (kicad-cli and its bundled python), Java and the Freerouting jar. Override the paths with KICAD, JAVA, FREEROUTING, WORK.
 set -e
@@ -41,7 +41,9 @@ else
 fi
 $PY "$HERE/post_pcb.py" routed.kicad_pcb final.kicad_pcb 2>&1 | grep -v -E "assert|leak"
 $KCLI pcb drc --severity-all --format json -o drc.json final.kicad_pcb >/dev/null 2>&1
-$PY "$HERE/remove_dangling_vias.py" final.kicad_pcb drc.json final2.kicad_pcb 2>&1 | grep -v -E "assert|leak"
+$PY "$HERE/remove_dangling_vias.py" final.kicad_pcb drc.json final1.kicad_pcb 2>&1 | grep -v -E "assert|leak"
+$PY "$HERE/tidy_pcb.py" final1.kicad_pcb final1t.kicad_pcb 2>&1 | grep -v -E "assert|leak"
+$PY "$HERE/flip_pcb.py" final1t.kicad_pcb final2.kicad_pcb 2>&1 | grep -v -E "assert|leak"
 $KCLI pcb drc --severity-all --format report -o drc.txt final2.kicad_pcb >/dev/null
 grep -E "^\[" drc.txt | sed 's/ (.*//' | sort | uniq -c | sort -rn
 grep "Found" drc.txt
