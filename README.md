@@ -99,7 +99,7 @@ Two small all-SMD low-pass filters (7th-order Chebyshev, 0.1 dB ripple, 50 Ω) t
 | Passband | 144–146 MHz | 430–440 MHz |
 | Insertion loss (simulated) | 0.56 dB | 0.50 dB |
 | 2nd harmonic (simulated) | 52 dB down | 63 dB down |
-| Board size | 38.0 × 12.4 mm | 34.4 × 12.4 mm |
+| Board size | 38.6 × 12.4 mm | 35.0 × 12.4 mm |
 
 ### Ordering the boards
 

@@ -14,7 +14,7 @@ shunt-C first: C1 - L1 - C2 - L2 - C3 - L3 - C4. SMA in on one end, SMA out on t
 | L2 | 82 nH | 27 nH |
 | Capacitors | C0G/NP0, 0402, 50 V | C0G/NP0, 0402, 50 V |
 | Inductors | high-Q chip, 0603 | high-Q chip, 0402 |
-| Board size | 38.0 x 12.4 mm | 34.4 x 12.4 mm |
+| Board size | 38.6 x 12.4 mm | 35.0 x 12.4 mm |
 | Insertion loss (simulated) | 0.56 dB | 0.50 dB |
 | Return loss in band (simulated) | 36 dB | 27 dB |
 | 2nd harmonic (simulated) | 52 dB down | 63 dB down |
@@ -35,7 +35,7 @@ Simulated response of the two filters:
 
 ## What is simulated and what is not
 
-The simulation (`../tools/filter_sim.py`) includes inductor Q (70 / 90), the inductors' winding capacitance, capacitor ESL and
+The simulation (`tools/filter_sim.py`, see below how to run it) includes inductor Q (70 / 90), the inductors' winding capacitance, capacitor ESL and
 ESR, and component tolerance. It does not include the board: pad and via parasitics, coupling between neighbouring parts,
 and the SMA transitions. The board is a straight 50-ohm line with the shunt capacitors going to ground vias right at their
 pads, but it has not been measured. Expect a few percent shift in the filter edge. Measure S21 and S11 with a NanoVNA
@@ -43,8 +43,30 @@ before relying on it, and trim a capacitor by one step if the passband edge is o
 the 3rd and 5th harmonics (85 dB and more) is not realistic on a real board; coupling limits it to roughly 60-70 dB.
 This is a design aid, not a compliance measurement.
 
+## Running the simulation
+
+`tools/filter_sim.py` computes the ideal values, picks the E24 values, simulates the response with the part losses and runs the tolerance test. It needs numpy, which is not installed by default (`pip install --target /tmp/np numpy`). From the repository root:
+
+    PYTHONPATH=/tmp/np python3 hardware/filter/tools/filter_sim.py
+
+It prints the results shown above and rewrites `design.json` and the `*-response.svg` plots in `vhf/` and `uhf/` (the PNG versions are converted from the SVG files separately). Inductor Q, capacitor losses and the parasitics are set at the top of the script (`BANDS`).
+
+## Rebuilding the schematics and the boards
+
+The schematics, the connector footprints and 3D bodies, and the boards are generated, so a change in `design.json` (or in a layout number) can be carried through. From the repository root, with KiCad 10 installed:
+
+    python3 -I hardware/filter/tools/gen_filter.py          # schematics, footprints, 3D bodies (reads design.json)
+    for b in vhf uhf; do
+      kicad-cli sch export netlist --format kicadxml -o hardware/filter/$b/rdio-filter-$b.net.xml hardware/filter/$b/rdio-filter-$b.kicad_sch
+      /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 hardware/filter/tools/gen_filter_pcb.py $b
+    done
+    python3 -I hardware/jlcpcb/gen_jlcpcb.py vhf uhf        # order files
+
+`tools/sch_engine.py` is the schematic writer behind `gen_filter.py`. `gen_filter_pcb.py` lays the board out along a straight 50 Ω line: the connectors at the two ends, the series inductors in the line, each shunt capacitor with a ground via at its pad, ground pours on both layers and stitching vias. Both scripts honour `FILTER_DIR` to write somewhere else than `hardware/filter`. Regenerating the boards gives the same parts and positions as the files in this folder (checked against the committed boards: same positions, tracks and zones, and no DRC violations); the schematics get new UUIDs.
+
 ## Parts notes
 
+- LCSC part numbers for the capacitors and inductors, the two parts that are still open, and what the inductor Q costs: [../jlcpcb/README.md](../jlcpcb/README.md).
 - Check that the inductor values exist in the series you pick (for example Coilcraft 0603HP or Murata LQW18 for 68/82 nH,
   Coilcraft 0402HP or Murata LQW15 for 22/27 nH) and that the Q is at least 50 at the band.
 - 0402 parts are small to hand-solder. The 0603 inductors on the 2 m board are easier.
