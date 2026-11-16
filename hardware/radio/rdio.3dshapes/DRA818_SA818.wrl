@@ -1,0 +1,4 @@
+#VRML V2.0 utf8
+# SA818S module 35.6 x 19 x 3.2 mm (placeholder shapes)
+Transform { translation 0.000 0.000 0.400 children Shape { appearance Appearance { material Material { diffuseColor 0.06 0.25 0.12 specularColor 0.3 0.3 0.3 shininess 0.3 } } geometry Box { size 35.600 19.000 0.800 } } }
+Transform { translation 0.000 0.000 2.000 children Shape { appearance Appearance { material Material { diffuseColor 0.78 0.78 0.8 specularColor 0.3 0.3 0.3 shininess 0.3 } } geometry Box { size 35.000 18.400 2.400 } } }
