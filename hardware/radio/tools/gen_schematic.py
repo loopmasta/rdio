@@ -210,7 +210,7 @@ x,y = P("27"); poly((x,y),(185.42,y),(185.42,205.74),(tx,205.74),(tx,ty))
 vx,vy = sa_pos("8"); wire(vx,vy,vx-5.08,vy); power("VBAT",vx-5.08,vy)
 g9x,g9y = sa_pos("9"); g10x,g10y = sa_pos("10")
 poly((g9x,g9y),(g9x-5.08,g9y),(g9x-5.08,g10y)); wire(g10x,g10y,g10x-5.08,g10y); power("GND",g10x-5.08,g10y)
-for ref,val,cx in (("C6","220uF",213.36),("C7","100nF",226.06)):
+for ref,val,cx in (("C6","100uF",213.36),("C7","100nF",226.06)):
     part("Device:C_Polarized" if ref=="C6" else "Device:C",ref,val,cx,170.18)
     wire(cx,166.37,cx,161.29); power("VBAT",cx,161.29)
     wire(cx,173.99,cx,179.07); power("GND",cx,179.07)

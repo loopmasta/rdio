@@ -35,8 +35,8 @@ The numbers were looked up in LCSC's product data on 2026-11-16 (value, package 
 | 10 k 0603 | C25804 | UNI-ROYAL 0603WAF1002T5E, 1 % |
 | 1 k 0603 | C21190 | UNI-ROYAL 0603WAF1001T5E, 1 % |
 | 0 Ω 0603 (R9) | C21189 | UNI-ROYAL 0603WAF0000T5E |
-| **220 µF 6.3 × 5.8 mm SMD electrolytic (C6)** | **open** | at least 10 V, low ESR, not taller than 5.8 mm (7.5 mm gap under the DevKit) |
-| **100 µF 6.3 × 5.4 mm SMD electrolytic (C2)** | **open** | at least 10 V, not taller than 5.4 mm |
+| 100 µF 16 V SMD electrolytic (C6, 5.8 mm footprint) | C7469977 | same part as C2 (220 µF was not available at 16 V) |
+| 100 µF 6.3 × 5.4 mm SMD electrolytic (C2) | C7469977 | FOSAN FVH016ADA101M0654, 16 V, ±20 %, 105 °C 2000 h, 5.4 mm max height, extended part; stock not checked |
 
 ### Filter boards
 

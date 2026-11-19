@@ -36,6 +36,8 @@ LCSC = {
     ("100k", "R_0603_1608Metric"): "C25803",      # UNI-ROYAL 0603WAF1003T5E, 1 %
     ("1k", "R_0603_1608Metric"): "C21190",        # UNI-ROYAL 0603WAF1001T5E, 1 %
     ("0R link", "R_0603_1608Metric"): "C21189",   # UNI-ROYAL 0603WAF0000T5E, 0 ohm
+    ("100uF", "CP_Elec_6.3x5.4"): "C7469977",     # C2: FOSAN FVH016ADA101M0654, 100 uF 16 V, 6.3 x 5.4 mm (max height 5.4), 105 C 2000 h, extended part
+    ("100uF", "CP_Elec_6.3x5.8"): "C7469977",     # C6: the same part on the 5.8 mm footprint (220 uF is not available at 16 V)
     # filter boards (C0G capacitors, Murata LQW wirewound inductors)
     ("22 pF", "C_0402_1005Metric"): "C70464",     # Samsung CL05C220JB5NNNC, 22 pF C0G +-5 % 50 V
     ("39 pF", "C_0402_1005Metric"): "C86288",     # Samsung CL05C390JB5NNNC, 39 pF C0G +-5 % 50 V
@@ -43,7 +45,7 @@ LCSC = {
     ("68 nH", "L_0603_1608Metric"): "C86135",     # Murata LQW18AN68NG00D, 68 nH +-2 %
     ("22 nH", "L_0402_1005Metric"): "C86129",     # Murata LQW15AN22NG00D, 22 nH +-2 %
     ("27 nH", "L_0402_1005Metric"): "C98057",     # Murata LQW15AN27NG00D, 27 nH +-2 %
-    # still open: 220 uF 6.3x5.8 (C6) and 100 uF 6.3x5.4 (C2) SMD electrolytics of the carrier board (at least 10 V, low ESR, no taller than the footprint name says), 13 pF C0G 0402 (70 cm board) and 82 nH 0603 (2 m board), see README.md
+    # still open: 13 pF C0G 0402 (70 cm board) and 82 nH 0603 (2 m board), see README.md
 }
 # Looked up on LCSC (product data of each number) on 2026-11-16.
 SMD = ("C_", "CP_", "R_", "L_", "D_")
@@ -78,8 +80,12 @@ def build(name):
     with open(os.path.join(out, "bom.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["Comment", "Designator", "Footprint", "LCSC Part #"])
+        lines = {}   # one BOM line per LCSC number (C2 and C6 are the same part on two footprints); parts without a number stay separate
         for (val, pkg), refs in groups.items():
-            w.writerow([val, ",".join(refs), pkg, LCSC.get((val, pkg), "")])
+            lcsc = LCSC.get((val, pkg), "")
+            lines.setdefault((val, lcsc or pkg), [pkg, lcsc, []])[2].extend(refs)
+        for (val, _), (pkg, lcsc, refs) in lines.items():
+            w.writerow([val, ",".join(sorted(refs, key=lambda r: int(re.sub(r"\D", "", r) or 0))), pkg, lcsc])
     with zipfile.ZipFile(os.path.join(out, zipname), "w", zipfile.ZIP_DEFLATED) as z:
         for p in sorted(glob.glob(os.path.join(gerber, "*"))):
             if p.endswith((".gbr", ".drl", ".gbrjob")) and "drl_map" not in p:

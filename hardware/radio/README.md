@@ -29,7 +29,7 @@ GPIO26 and the other pins of the DevKit are not used.
 ## Power
 
 - The module's VBAT comes from the DevKit's VIN pin (5 V from the DevKit's own USB-C) through R9, a 0 Ω link. The module accepts 3.3 to 5.5 V (the RF power is specified at 4.0 V).
-- At the module: C6 220 µF (low ESR, at least 10 V, 6.3 × 5.8 mm) and C7 100 nF. On the 3.3 V side: C2 100 µF and C3 100 nF.
+- At the module: C6 100 µF, 16 V (6.3 mm can, 5.4 mm high; the board has the 6.3 × 5.8 mm footprint, which fits it; 220 µF was not available at 16 V) and C7 100 nF. On the 3.3 V side: C2 100 µF and C3 100 nF.
 - **FB1 (ferrite bead) and C8 (100 µF) are not fitted.** To try them, fit both and remove R9: the bead keeps current steps of the module (power level change, PTT) away from the ESP32's regulator. Build without them first and see whether Wi-Fi still drops when the power level switches.
 - The module draws about 60 mA receiving, 650–750 mA transmitting at high power and 450–550 mA at low power (datasheet). All of it passes through the DevKit's USB path and its VIN pin. Use a 5 V source that can deliver at least 1 A (2 A is better), and check the DevKit's input protection. USB 500 mA from a computer can brown out during a high-power transmission.
 - Do not power the module from the DevKit's 3.3 V pin. Check the DevKit's behaviour before connecting USB and an external 5 V supply at the same time.

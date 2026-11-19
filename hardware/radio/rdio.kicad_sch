@@ -1665,7 +1665,7 @@
 	)
 	(symbol (lib_id "Device:C_Polarized") (at 213.36 170.18 0) (unit 1) (exclude_from_sim no) (in_bom yes) (on_board yes) (dnp no) (uuid "a4d5ea83-790c-5c08-8dfb-aa98b93c2591")
 		(property "Reference" "C6" (at 215.9 168.91 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Value" "220uF" (at 215.9 171.45 0) (effects (font (size 1.27 1.27)) (justify left)))
+		(property "Value" "100uF" (at 215.9 171.45 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Capacitor_SMD:CP_Elec_6.3x5.8" (at 213.36 170.18 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 213.36 170.18 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "e2fc1fd7-33ce-5c75-9cb3-9d657a57af56"))
