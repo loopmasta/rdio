@@ -9,6 +9,10 @@ A 57.4 × 26.0 mm two-layer board that joins an ESP32 38-pin DevKit (NodeMCU-32S
   - **J3**, right-angle SMA jack (BAT Wireless BWSMA-KWE-Z001, LCSC C496551, through hole): stands on the top side of the board, the barrel points out over the board edge. Its pads overlap those of J2, so never fit both.
 - The small parts are on the top side, in the 7–8 mm gap between the carrier and the DevKit.
 
+![Top side of the carrier board: small parts, J3 and the unfitted C8 and FB1](rdio-pcb-top.png)
+
+*3D render of the carrier board seen from the top (DevKit side). The DevKit and the radio module (on the bottom) are not shown. C8, FB1 and the J2 footprint are not fitted in the default build; C8 and FB1 are visible here.*
+
 ## Connections
 
 | Module (SA818S) | Signal | ESP32 | Notes |
