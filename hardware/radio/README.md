@@ -45,13 +45,11 @@ Gerber, drill, bill of materials and placement files for JLCPCB are in [../jlcpc
 
 ## Design status
 
-The board is routed with Freerouting. KiCad's design rule check reports no unconnected items and no clearance errors or shorts. What remains:
+The board is routed with Freerouting. KiCad's design rule check (with the project's rules, and also with 0.2 mm clearance, 0.3 mm copper-to-edge and 0.5 mm hole-to-hole) reports no unconnected items, no clearance errors, no shorts and no dangling tracks. What remains:
 
-- one error that is intentional: the antenna trace runs inside the keepout area `ant_corridor`, which keeps the autorouter away from it. Delete that area in KiCad to get a clean report.
-- two very short dangling track ends (`/SA_TXD`, 0.3 mm, and `/HL`, 0.19 mm),
-- silkscreen warnings (overlaps and clearance to copper and to the board edge),
 - the schematic symbol has a pin 11 (NC) that the footprint does not draw as a pad, which is harmless,
-- the schematic check warns that the `VBAT` power symbol and the `Board` symbol library are not found, because the folder has no symbol library table.
+- the schematic check warns that the `VBAT` power symbol and the `Board` symbol library are not found, because the folder has no symbol library table,
+- J2 (edge-mount SMA) has pads 0.25 mm from the board edge by design; it is not fitted in the default build.
 
 ## Still to verify at the bench
 

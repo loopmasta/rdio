@@ -67,7 +67,7 @@ Use a 50 Ω antenna or a dummy load on pin 12 **before the first transmission**.
 
 - Symbol U2 follows the module's real pin layout (datasheet pinout, top view): pins 7 to 1 along the top (left to right), 12 to 18 along the bottom (left to right), 8 to 11 down the left side (VBAT, GND, GND, NC).
 - Footprint `rdio:DRA818_SA818` (`rdio.pretty/DRA818_SA818.kicad_mod`, library table `fp-lib-table`): 35.6 × 19.0 mm, castellated pads 1.8 mm, pitch 4.45 mm, first top and bottom pad 4.5 mm from the left edge, left pads at 2.66 / 6.96 / 12.04 / 16.34 mm from the top edge. Pads extend 1.0 mm beyond the module edge for soldering.
-- The datasheet drawing shows two large unnumbered pads on the right edge (about 6.2 mm tall). They are in the footprint as MP1 and MP2 and not in the symbol; the datasheet does not say what they are (probably ground or shield).
+- The datasheet drawing shows two large unnumbered pads on the right edge (about 6.2 mm tall). They are not in the footprint or the symbol (the datasheet does not say what they are, probably ground or shield); the module is held by its 17 signal pads.
 - The pad pattern is the one of the earlier rdio carrier board, which was built and probed, and it was confirmed against the real module. It is the mirror of the pattern read from the datasheet pinout figure in a first version of this board, which was therefore wrong. The module is mounted turned by 180° so its ANT pad faces the SMA connector. The NC pads are not drawn (KiCad notes that pin 11 has no pad, which is harmless).
 
 ## The board

@@ -8,7 +8,7 @@ For every board it runs kicad-cli (gerbers, drill files, position file) and writ
   <name>-gerber.zip  the same files in one archive, ready to upload
   bom.csv            bill of materials of the parts JLCPCB assembles
   cpl.csv            their positions (component placement list)
-Only SMD chips are assembled. Electrolytic capacitors, the SMA connectors, the two 19-pin DevKit headers and the radio module are soldered by hand.
+Only SMD parts are assembled (chips and SMD electrolytic capacitors). The SMA connectors, the two 19-pin DevKit headers and the radio module are soldered by hand.
 Parts marked DNP are left out.
 
 Output folders: hardware/jlcpcb/radio/ for the carrier board, hardware/jlcpcb/filters/<band>/ for the filters.
@@ -43,10 +43,10 @@ LCSC = {
     ("68 nH", "L_0603_1608Metric"): "C86135",     # Murata LQW18AN68NG00D, 68 nH +-2 %
     ("22 nH", "L_0402_1005Metric"): "C86129",     # Murata LQW15AN22NG00D, 22 nH +-2 %
     ("27 nH", "L_0402_1005Metric"): "C98057",     # Murata LQW15AN27NG00D, 27 nH +-2 %
-    # still open: 13 pF C0G 0402 (70 cm board) and 82 nH 0603 (2 m board), see README.md
+    # still open: 220 uF 6.3x5.8 (C6) and 100 uF 6.3x5.4 (C2) SMD electrolytics of the carrier board (at least 10 V, low ESR, no taller than the footprint name says), 13 pF C0G 0402 (70 cm board) and 82 nH 0603 (2 m board), see README.md
 }
 # Looked up on LCSC (product data of each number) on 2026-11-16.
-SMD = ("C_", "R_", "L_", "D_")
+SMD = ("C_", "CP_", "R_", "L_", "D_")
 
 
 def run(*args):

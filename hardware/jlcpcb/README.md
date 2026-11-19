@@ -16,9 +16,9 @@ Every folder has:
 
 ## What is assembled, what is soldered by hand
 
-JLCPCB assembles the SMD chips only (resistors, ceramic capacitors, inductors). **Soldered by hand:** the electrolytic capacitors of the carrier board (C2, C6), the SMA connector (J2 or J3, see the radio README), the two 19-pin DevKit headers and the radio module. Parts marked DNP (FB1 and C8 on the carrier board) are not in the files.
+JLCPCB assembles the SMD parts: resistors, ceramic capacitors, inductors and, on the carrier board, the two SMD electrolytic capacitors C2 and C6. **Soldered by hand:** the SMA connector (J2 or J3, see the radio README), the two 19-pin DevKit headers and the radio module. Parts marked DNP (FB1 and C8 on the carrier board) are not in the files.
 
-On the carrier board all the assembled parts are on the **top** side, so order assembly for the top side (the usual choice). The parts are 0603 resistors and capacitors without polarity, so a rotation that is off by 180° does no harm.
+On the carrier board all the assembled parts are on the **top** side, so order assembly for the top side (the usual choice). The 0603 resistors and capacitors have no polarity, so a rotation that is off by 180° does no harm there. **C2 and C6 are polarised:** JLCPCB's part libraries can define the rotation differently from KiCad, so check the "+" marking of both in JLCPCB's placement preview and correct the rotation there if it is reversed.
 
 ## LCSC part numbers
 
@@ -35,6 +35,8 @@ The numbers were looked up in LCSC's product data on 2026-11-16 (value, package 
 | 10 k 0603 | C25804 | UNI-ROYAL 0603WAF1002T5E, 1 % |
 | 1 k 0603 | C21190 | UNI-ROYAL 0603WAF1001T5E, 1 % |
 | 0 Ω 0603 (R9) | C21189 | UNI-ROYAL 0603WAF0000T5E |
+| **220 µF 6.3 × 5.8 mm SMD electrolytic (C6)** | **open** | at least 10 V, low ESR, not taller than 5.8 mm (7.5 mm gap under the DevKit) |
+| **100 µF 6.3 × 5.4 mm SMD electrolytic (C2)** | **open** | at least 10 V, not taller than 5.4 mm |
 
 ### Filter boards
 
